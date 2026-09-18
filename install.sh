@@ -28,9 +28,7 @@ fc-cache -f "$TARGET_HOME/.local/share/fonts"
 # 2. Install official packages
 # ─────────────────────────────────────────────
 echo "[3/7] Syncing and installing official packages..."
-sudo pacman -Syu --needed --noconfirm git zsh udisks2 starship zsh-autosuggestions \
-    zsh-syntax-highlighting foot base-devel ntfs-3g gvfs gvfs-mtp \
-    amd-ucode mpv gthumb tumbler ffmpegthumbnailer thunar-volman zed
+sudo pacman -Syu --needed --noconfirm git zsh udisks2 starship zsh-autosuggestions zsh-syntax-highlighting foot base-devel ntfs-3g gvfs gvfs-mtp amd-ucode mpv gthumb tumbler ffmpegthumbnailer thunar-volman zed noctalia nvim
 
 # ─────────────────────────────────────────────
 # 3. Install yay (must run as normal user, NOT root)

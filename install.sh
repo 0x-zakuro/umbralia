@@ -76,9 +76,6 @@ ok "user configs in place"
 # ─────────────────────────────────────────────────────────────
 step 2 9 "System config → /etc"
 sudo cp -r "$DOTFILES_DIR/etc/." /etc/
-# NOTE: do NOT copy usr/share/umbriel here if umbriel-git (step 5)
-# ships the same paths — pacman will refuse with "exists in filesystem".
-# Pick ONE owner: either the package, or this copy.
 ok "/etc merged"
 
 info "refreshing font cache…"

@@ -1,0 +1,6 @@
+polkit.addRule(function(action, subject) {
+    if (action.id == "org.noctalia.greeter.sync-appearance" &&
+        subject.user == "kuro") {
+        return polkit.Result.YES;
+    }
+});

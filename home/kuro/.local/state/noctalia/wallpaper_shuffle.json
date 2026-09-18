@@ -1,0 +1,29 @@
+{
+  "scopes": {
+    "global": {
+      "/home/kuro/.config/wallpaper/dark_wallpaper": [
+        "/home/kuro/.config/wallpaper/dark_wallpaper/Wallpaper.jpg",
+        "/home/kuro/.config/wallpaper/dark_wallpaper/D-1.png",
+        "/home/kuro/.config/wallpaper/dark_wallpaper/D-2.png",
+        "/home/kuro/.config/wallpaper/dark_wallpaper/D-3.jpg",
+        "/home/kuro/.config/wallpaper/dark_wallpaper/D-4.png",
+        "/home/kuro/.config/wallpaper/dark_wallpaper/D-5.png",
+        "/home/kuro/.config/wallpaper/dark_wallpaper/D-6.png",
+        "/home/kuro/.config/wallpaper/dark_wallpaper/D-7.png",
+        "/home/kuro/.config/wallpaper/dark_wallpaper/D-8.png",
+        "/home/kuro/.config/wallpaper/dark_wallpaper/D-9.png",
+        "/home/kuro/.config/wallpaper/dark_wallpaper/D-10.jpg",
+        "/home/kuro/.config/wallpaper/dark_wallpaper/D-11.jpg",
+        "/home/kuro/.config/wallpaper/dark_wallpaper/D-12.jpg",
+        "/home/kuro/.config/wallpaper/dark_wallpaper/D-13.png"
+      ],
+      "/home/kuro/.config/wallpaper/light_wallpaper": [
+        "/home/kuro/.config/wallpaper/light_wallpaper/L-1.jpg",
+        "/home/kuro/.config/wallpaper/light_wallpaper/L-2.jpg",
+        "/home/kuro/.config/wallpaper/light_wallpaper/L-3.jpg",
+        "/home/kuro/.config/wallpaper/light_wallpaper/L-4.jpg"
+      ]
+    }
+  },
+  "version": 2
+}

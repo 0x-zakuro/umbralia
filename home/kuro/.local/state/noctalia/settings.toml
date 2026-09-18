@@ -1,0 +1,362 @@
+config_version = 14
+
+[bar]
+order = [ "default" ]
+
+    [bar.default]
+    background_opacity = 0.0
+    capsule = true
+    capsule_padding = 8.0
+    capsule_radius = 5
+    capsule_thickness = 0.84999998472630978
+    center = [ "active_window" ]
+    concave_edge_corners = false
+    end = [ "media", "tray", "clipboard", "battery", "group:g1" ]
+    font_family = "Liberation Sans"
+    font_weight = 700
+    margin_ends = 0
+    padding = 10
+    radius = 8
+    scale = 1.1000000089406967
+    shadow = false
+    start = [ "clock", "workspaces" ]
+    thickness = 40
+    widget_spacing = 10
+
+        [bar.default.dead_zone.actions]
+        left = "wallpaper-random"
+        right = "theme-mode-toggle"
+        scroll_down = "brightness-down"
+        scroll_up = "brightness-up"
+
+        [[bar.default.capsule_group]]
+        accordion = false
+        accordion_direction = "end"
+        enabled = true
+        fill = "surface_variant"
+        id = "g1"
+        members = [ "wallpaper", "control-center" ]
+        opacity = 1.0
+        padding = 8.0
+        radius = 5.0
+
+[control_center]
+show_shortcut_labels = false
+sidebar = "full"
+sidebar_section = "full"
+width = 600
+
+    [[control_center.shortcuts]]
+    type = "wifi"
+
+    [[control_center.shortcuts]]
+    type = "bluetooth"
+
+    [[control_center.shortcuts]]
+    type = "caffeine"
+
+    [[control_center.shortcuts]]
+    type = "nightlight"
+
+    [[control_center.shortcuts]]
+    type = "clipboard"
+
+    [[control_center.shortcuts]]
+    type = "notification"
+
+[desktop_widgets]
+enabled = false
+schema_version = 2
+widget_order = [ "desktop-widget-0000000000000002" ]
+
+    [desktop_widgets.grid]
+    cell_size = 16
+    major_interval = 4
+    visible = false
+
+    [desktop_widgets.widget.desktop-widget-0000000000000002]
+    box_height = 0.0
+    box_width = 0.0
+    cx = 649.2421875
+    cy = 326.70001220703125
+    output = "eDP-1"
+    placement_height = 1080.0
+    placement_width = 1920.0
+    rotation = 0.0
+    type = "button"
+
+        [desktop_widgets.widget.desktop-widget-0000000000000002.settings]
+        background = true
+        glyph = "heart"
+        variant = "default"
+
+[dock]
+position = "top"
+
+[idle]
+pre_action_fade_seconds = 30
+
+[lockscreen]
+blur_intensity = 0.29999999329447746
+blurred_desktop = true
+
+[lockscreen_widgets]
+enabled = true
+schema_version = 2
+widget_order = [
+    "lockscreen-login-box@WL-1",
+    "lockscreen-login-box@eDP-1",
+    "lockscreen-widget-0000000000000001",
+    "lockscreen-widget-0000000000000002",
+    "lockscreen-widget-0000000000000003"
+]
+
+    [lockscreen_widgets.grid]
+    cell_size = 8
+    major_interval = 4
+    visible = true
+
+    [lockscreen_widgets.widget."lockscreen-login-box@WL-1"]
+    box_height = 196.0
+    box_width = 810.0
+    cx = 472.0
+    cy = 878.0
+    output = "WL-1"
+    placement_height = 1060.0
+    placement_width = 944.0
+    rotation = 0.0
+    type = "login_box"
+
+        [lockscreen_widgets.widget."lockscreen-login-box@WL-1".settings]
+        background_color = "surface_variant"
+        background_opacity = 0.88
+        background_radius = 12.0
+        center_password_text = false
+        input_opacity = 1.0
+        input_radius = 6.0
+        layout = "regular"
+        show_caps_lock = true
+        show_keyboard_layout = true
+        show_login_button = true
+        show_media = true
+        show_session_buttons = true
+        show_unlock_hint = true
+        show_weather = true
+
+    [lockscreen_widgets.widget."lockscreen-login-box@eDP-1"]
+    box_height = 70.0
+    box_width = 240.0
+    cx = 960.0
+    cy = 935.0
+    output = "eDP-1"
+    placement_height = 1080.0
+    placement_width = 1920.0
+    rotation = 0.0
+    type = "login_box"
+
+        [lockscreen_widgets.widget."lockscreen-login-box@eDP-1".settings]
+        background_color = "surface_variant"
+        background_opacity = 0.0
+        background_radius = 12.0
+        center_password_text = true
+        input_opacity = 0.84999999999999998
+        input_radius = 20.0
+        layout = "compact"
+        show_caps_lock = true
+        show_keyboard_layout = true
+        show_login_button = false
+        show_media = true
+        show_session_buttons = true
+        show_unlock_hint = false
+        show_weather = true
+
+    [lockscreen_widgets.widget.lockscreen-widget-0000000000000001]
+    box_height = 112.0
+    box_width = 256.0
+    cx = 960.0
+    cy = 292.0
+    output = "eDP-1"
+    placement_height = 1080.0
+    placement_width = 1920.0
+    rotation = 0.0
+    type = "clock"
+
+        [lockscreen_widgets.widget.lockscreen-widget-0000000000000001.settings]
+        background = false
+        clock_style = "digital"
+        font_family = "Liberation Sans"
+        format = "{:%H:%M}"
+
+    [lockscreen_widgets.widget.lockscreen-widget-0000000000000002]
+    box_height = 32.0
+    box_width = 208.0
+    cx = 960.0
+    cy = 980.0
+    output = "eDP-1"
+    placement_height = 1080.0
+    placement_width = 1920.0
+    rotation = -0.0
+    type = "label"
+
+        [lockscreen_widgets.widget.lockscreen-widget-0000000000000002.settings]
+        background = false
+        background_color = "primary"
+        background_opacity = 0.0
+        background_radius = 18
+        opacity = 1.0
+        title = "Enter the password to continue "
+
+    [lockscreen_widgets.widget.lockscreen-widget-0000000000000003]
+    box_height = 24.0
+    box_width = 280.0
+    cx = 960.0
+    cy = 208.0
+    output = "eDP-1"
+    placement_height = 1080.0
+    placement_width = 1920.0
+    rotation = 0.0
+    type = "clock"
+
+        [lockscreen_widgets.widget.lockscreen-widget-0000000000000003.settings]
+        background = false
+        format = "{:%A %d %B %Y}"
+
+[notification]
+background_opacity = 0.99999997764825821
+border = false
+history_retention_hours = 168
+max_visible = 3
+offset_x = 16
+offset_y = 6
+scale = 0.90000000596046448
+
+[osd]
+border = false
+
+[plugins]
+enabled = []
+
+[shell]
+avatar_path = "/home/kuro/Downloads/screenshot_20260917_023033-annotated~2.jpg"
+corner_radius_scale = 0.90000001341104507
+external_ip_enabled = true
+font_family = "Liberation Sans"
+password_style = "random"
+polkit_agent = true
+settings_window_translucent = true
+
+    [shell.greeter_sync]
+    auto_sync = true
+
+    [shell.launcher]
+    auto_paste = "ctrl_v"
+    categories = false
+    compact = true
+    fetch_exchange_rates = false
+    show_app_origin_indicator = false
+
+        [shell.launcher.providers.calculator]
+        global = false
+
+    [shell.panel]
+    control_center_placement = "floating"
+    control_center_position = "top_right"
+    open_near_click_session = true
+
+    [shell.screenshot]
+    annotate = true
+    directory = "/home/kuro/Pictures"
+
+    [shell.session]
+    grid = true
+    grid_columns = 5
+
+        [[shell.session.actions]]
+        action = "logout"
+        countdown_seconds = 0.0
+        enabled = true
+        shortcut = "2"
+        variant = "default"
+
+        [[shell.session.actions]]
+        action = "lock_and_suspend"
+        countdown_seconds = 0.0
+        enabled = true
+        shortcut = "3"
+        variant = "default"
+
+        [[shell.session.actions]]
+        action = "lock"
+        countdown_seconds = 0.0
+        enabled = true
+        shortcut = "1"
+        variant = "default"
+
+        [[shell.session.actions]]
+        action = "reboot"
+        countdown_seconds = 0.0
+        enabled = true
+        shortcut = "4"
+        variant = "default"
+
+        [[shell.session.actions]]
+        action = "shutdown"
+        countdown_seconds = 0.0
+        enabled = true
+        shortcut = "5"
+        variant = "destructive"
+
+[theme]
+community_palette = "ADW"
+custom_palette = "wp8968733-4k-pc-cool-wallpapers-mo"
+mode = "dark"
+source = "community"
+wallpaper_scheme = "dysfunctional"
+
+[wallpaper]
+directory = "/home/kuro/.config/wallpaper/Dark Mode Wallpaper"
+directory_dark = "/home/kuro/.config/wallpaper/Dark Mode Wallpaper"
+directory_light = "/home/kuro/.config/wallpaper/Light Mode Wallpaper"
+transition = [ "fade", "wipe" ]
+transition_on_startup = true
+
+    [wallpaper.automation]
+    enabled = true
+    interval_seconds = 3600
+
+    [wallpaper.default]
+    path = "/home/kuro/.config/wallpaper/Dark Mode Wallpaper/Wallpaper.jpg"
+
+    [wallpaper.last]
+    path = "/home/kuro/.config/wallpaper/Dark Mode Wallpaper/Wallpaper.jpg"
+
+    [wallpaper.monitors.WL-1]
+    path = "/home/kuro/.config/wallpaper/Light Mode Wallpaper/6.jpg"
+
+    [wallpaper.monitors.eDP-1]
+    path = "/home/kuro/.config/wallpaper/Dark Mode Wallpaper/Wallpaper.jpg"
+
+[widget.bluetooth]
+enabled = false
+
+[widget.brightness]
+enabled = false
+
+[widget.clipboard]
+enabled = false
+
+[widget.taskbar]
+scale = 2.5
+
+[widget.volume]
+enabled = false
+
+[widget.widget]
+type = "yuuto/arch-updater:widget"
+
+[widget.workspaces]
+active_pill_size = 1.3
+hide_when_empty = true
+inactive_pill_size = 0.65000000000000002
+scale = 1.2
+style = "minimal"

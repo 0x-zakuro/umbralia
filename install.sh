@@ -11,26 +11,25 @@ LOG_FILE="$HOME/umbralia-install.log"
 
 # ── Color palette (respects NO_COLOR / non-tty) ──────────────
 if [[ -t 1 && -z "${NO_COLOR:-}" ]]; then
-    B='\033[1m';   D='\033[2m';   R='\033[0m'
-    CYAN='\033[38;5;45m';  VIOLET='\033[38;5;141m'
-    GREEN='\033[38;5;84m';  YELLOW='\033[38;5;221m'
-    RED='\033[38;5;203m';   BLUE='\033[38;5;75m'
-    GRAY='\033[38;5;240m'
+    B=$'\033[1m';  D=$'\033[2m';  R=$'\033[0m'
+    GREEN=$'\033[38;5;71m';   YELLOW=$'\033[38;5;178m'
+    RED=$'\033[38;5;167m';    BLUE=$'\033[38;5;110m'
+    GRAY=$'\033[38;5;244m'
 else
-    B=''; D=''; R=''; CYAN=''; VIOLET=''; GREEN=''; YELLOW=''; RED=''; BLUE=''; GRAY=''
+    B=''; D=''; R=''; GREEN=''; YELLOW=''; RED=''; BLUE=''; GRAY=''
 fi
 
-# ── Pretty printers ──────────────────────────────────────────
-line()  { printf "${GRAY}%s${R}\\n" "──────────────────────────────────────────────────────────────"; }
-hdr()   { printf "${CYAN}${B}  %s${R}\\n" "$1"; }
-info()  { printf "  ${BLUE}▸${R}  %s\\n" "$1"; }
-ok()    { printf "  ${GREEN}${B}✔${R}  %s\\n" "$1"; }
-warn()  { printf "  ${YELLOW}${B}!${R}  %s\\n" "$1"; }
-err()   { printf "  ${RED}${B}✖${R}  %s\\n" "$1" >&2; }
+# ── Printers ─────────────────────────────────────────────────
+line()  { printf "${GRAY}%s${R}\n" "────────────────────────────────────────────────────────────"; }
+hdr()   { printf "${B}%s${R}\n" "$1"; }
+info()  { printf "  ${BLUE}[INFO]${R}  %s\n" "$1"; }
+ok()    { printf "  ${GREEN}[ OK ]${R}  %s\n" "$1"; }
+warn()  { printf "  ${YELLOW}[WARN]${R}  %s\n" "$1"; }
+err()   { printf "  ${RED}[FAIL]${R}  %s\n" "$1" >&2; }
 
 step() {  # step 3 9 "Official packages"
     local n="$1" total="$2" title="$3"
-    printf "\\n${VIOLET}${B}──[${R} ${CYAN}${B}%d${R}${D}/${R}${CYAN}${B}%d${R} ${VIOLET}${B}]──${R}  ${B}%s${R}\\n" "$n" "$total" "$title"
+    printf "\n${B}[%d/%d]${R} ${B}%s${R}\n" "$n" "$total" "$title"
     line
 }
 
@@ -38,19 +37,11 @@ die() { err "$1"; exit 1; }
 
 # ── Pre-flight checks ─────────────────────────────────────────
 clear 2>/dev/null || true
-printf "${CYAN}${B}"
-printf "  ╔══════════════════════════════════════════════════════════╗\\n"
-printf "  ║                                                          ║\\n"
-printf "  ║        █ █ █ █ █  U M B R A L I A  █ █ █ █ █             ║\\n"
-printf "  ║                                                          ║\\n"
-printf "  ║        dotfiles · packages · services · shell            ║\\n"
-printf "  ║                                                          ║\\n"
-printf "  ╚══════════════════════════════════════════════════════════╝\\n"
-printf "${R}\\n"
+printf "\n${B}UMBRALIA${R} ${GRAY}—${R} dotfiles & system installer\n"
 line
-info "dotfiles : ${D}$DOTFILES_DIR${R}"
-info "backups  : ${D}$BACKUP_DIR${R}"
-info "log      : ${D}$LOG_FILE${R}"
+printf "  ${GRAY}%-9s${R} %s\n" "dotfiles" "$DOTFILES_DIR"
+printf "  ${GRAY}%-9s${R} %s\n" "backups"  "$BACKUP_DIR"
+printf "  ${GRAY}%-9s${R} %s\n" "log"      "$LOG_FILE"
 line
 
 [[ $EUID -eq 0 ]]           && die "Do NOT run as root — run as your normal user."
@@ -102,7 +93,7 @@ info "microcode: $UCODE"
 sudo pacman -Syu --needed --noconfirm \
     "$UCODE" \
     base-devel ffmpegthumbnailer foot git gnome-boxes gthumb gvfs gvfs-mtp \
-    localsend mpv neovim noctalia ntfs-3g openssh starship \
+    mpv neovim noctalia ntfs-3g openssh starship \
     thunar-archive-plugin thunar-volman tumbler udisks2 zed zsh \
     zsh-autosuggestions zsh-syntax-highlighting
 ok "pacman packages installed"
@@ -128,7 +119,7 @@ fi
 # ─────────────────────────────────────────────────────────────
 step 5 9 "AUR packages"
 yay -S --needed --noconfirm \
-    helium-browser-bin mpv-uosc-git noctalia-greeter obsidian umbriel-git
+    helium-browser-bin localsend-bin mpv-uosc-git noctalia-greeter obsidian umbriel-git
 ok "AUR packages installed"
 
 # ─────────────────────────────────────────────────────────────
@@ -175,14 +166,11 @@ chsh -s /usr/bin/zsh
 ok "shell → zsh"
 
 # ─────────────────────────────────────────────────────────────
-printf "\\n${GREEN}${B}"
-printf "  ╔══════════════════════════════════════════════════════════╗\\n"
-printf "  ║   ✔  INSTALL COMPLETE — reboot to apply everything       ║\\n"
-printf "  ╚══════════════════════════════════════════════════════════╝\\n"
-printf "${R}\\n"
-info "backups : ${D}$BACKUP_DIR${R}"
-info "log     : ${D}$LOG_FILE${R}"
+printf "\n${GREEN}${B}Installation complete.${R} Reboot to apply all changes.\n"
 line
-printf "  ${YELLOW}▸${R}  Press ${B}Enter${R} to reboot now, or ${B}Ctrl+C${R} to reboot later… "
+printf "  ${GRAY}%-9s${R} %s\n" "backups" "$BACKUP_DIR"
+printf "  ${GRAY}%-9s${R} %s\n" "log"     "$LOG_FILE"
+line
+printf "Press ${B}Enter${R} to reboot now, or ${B}Ctrl+C${R} to reboot later… "
 read -r
 sudo reboot

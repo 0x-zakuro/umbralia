@@ -314,9 +314,9 @@ source = "custom"
 wallpaper_scheme = "dysfunctional"
 
 [wallpaper]
-directory = "/home/kuro/dotfiles/home/kuro/.config/wallpaper/"
-directory_dark = "/home/kuro/dotfiles/home/kuro/.config/wallpaper/dark_wallpaper/"
-directory_light = "/home/kuro/dotfiles/home/kuro/.config/wallpaper/light_wallpaper/"
+directory = "/home/kuro/.config/wallpaper/"
+directory_dark = "/home/kuro/.config/wallpaper/dark_wallpaper/"
+directory_light = "/home/kuro/.config/wallpaper/light_wallpaper/"
 transition = [ "fade", "wipe" ]
 transition_on_startup = true
 
@@ -325,16 +325,16 @@ transition_on_startup = true
     interval_seconds = 3600
 
     [wallpaper.default]
-    path = "/home/kuro/dotfiles/home/kuro/.config/wallpaper/dark_wallpaper/D-5.png"
+    path = "/home/kuro/.config/wallpaper/dark_wallpaper/D-5.png"
 
     [wallpaper.last]
-    path = "/home/kuro/dotfiles/home/kuro/.config/wallpaper/dark_wallpaper/D-5.png"
+    path = "/home/kuro/.config/wallpaper/dark_wallpaper/D-5.png"
 
     [wallpaper.monitors.WL-1]
-    path = "/home/kuro/dotfiles/home/kuro/.config/wallpaper/dark_wallpaper/D-5.png"
+    path = "/home/kuro/.config/wallpaper/dark_wallpaper/D-5.png"
 
     [wallpaper.monitors.eDP-1]
-    path = "/home/kuro/dotfiles/home/kuro/.config/wallpaper/dark_wallpaper/D-5.png"
+    path = "/home/kuro/.config/wallpaper/dark_wallpaper/D-5.png"
 
 [widget.bluetooth]
 enabled = false

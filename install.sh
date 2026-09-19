@@ -149,7 +149,8 @@ ok "timeline timer → every 6h"
 
 # ─────────────────────────────────────────────────────────────
 step 7 9 "Services"
-sudo systemctl enable --now NetworkManager bluetooth fstrim.timer udisks2 greetd
+sudo systemctl enable --now NetworkManager bluetooth fstrim.timer udisks2
+sudo systemctl enable greetd
 for svc in NetworkManager bluetooth fstrim.timer udisks2 greetd; do
     ok "enabled ${D}$svc${R}"
 done

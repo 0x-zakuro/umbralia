@@ -315,7 +315,7 @@ follows_mouse = false                           # Focus on pointer motion and Dw
 "Mod+Shift+L" = { action = "spawn:noctalia msg session lock" }
 
 # Applications and session
-"Mod+A" = "spawn:kitty"
+"Mod+A" = "spawn:foot"
 "Mod" = "spawn:noctalia msg panel-toggle launcher"
 "Mod+Q" = "window-close"
 

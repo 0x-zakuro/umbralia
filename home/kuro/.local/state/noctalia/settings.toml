@@ -237,7 +237,7 @@ border = false
 enabled = []
 
 [shell]
-avatar_path = "/home/kuro/Downloads/screenshot_20260917_023033-annotated~2.jpg"
+avatar_path = "/home/kuro/.config/wallpaper/avatar.jpg"
 corner_radius_scale = 0.90000001341104507
 external_ip_enabled = true
 font_family = "Liberation Sans"
@@ -265,7 +265,7 @@ settings_window_translucent = true
 
     [shell.screenshot]
     annotate = true
-    directory = "/home/kuro/Pictures"
+    directory = "/home/kuro/Pictures/Screenshots"
 
     [shell.session]
     grid = true
@@ -308,15 +308,15 @@ settings_window_translucent = true
 
 [theme]
 community_palette = "ADW"
-custom_palette = "wp8968733-4k-pc-cool-wallpapers-mo"
+custom_palette = "noctalia_blue"
 mode = "dark"
-source = "community"
+source = "custom"
 wallpaper_scheme = "dysfunctional"
 
 [wallpaper]
-directory = "/home/kuro/.config/wallpaper/Dark Mode Wallpaper"
-directory_dark = "/home/kuro/.config/wallpaper/Dark Mode Wallpaper"
-directory_light = "/home/kuro/.config/wallpaper/Light Mode Wallpaper"
+directory = "/home/kuro/dotfiles/home/kuro/.config/wallpaper/"
+directory_dark = "/home/kuro/dotfiles/home/kuro/.config/wallpaper/dark_wallpaper/"
+directory_light = "/home/kuro/dotfiles/home/kuro/.config/wallpaper/light_wallpaper/"
 transition = [ "fade", "wipe" ]
 transition_on_startup = true
 
@@ -325,16 +325,16 @@ transition_on_startup = true
     interval_seconds = 3600
 
     [wallpaper.default]
-    path = "/home/kuro/.config/wallpaper/Dark Mode Wallpaper/Wallpaper.jpg"
+    path = "/home/kuro/dotfiles/home/kuro/.config/wallpaper/dark_wallpaper/D-5.png"
 
     [wallpaper.last]
-    path = "/home/kuro/.config/wallpaper/Dark Mode Wallpaper/Wallpaper.jpg"
+    path = "/home/kuro/dotfiles/home/kuro/.config/wallpaper/dark_wallpaper/D-5.png"
 
     [wallpaper.monitors.WL-1]
-    path = "/home/kuro/.config/wallpaper/Light Mode Wallpaper/6.jpg"
+    path = "/home/kuro/dotfiles/home/kuro/.config/wallpaper/dark_wallpaper/D-5.png"
 
     [wallpaper.monitors.eDP-1]
-    path = "/home/kuro/.config/wallpaper/Dark Mode Wallpaper/Wallpaper.jpg"
+    path = "/home/kuro/dotfiles/home/kuro/.config/wallpaper/dark_wallpaper/D-5.png"
 
 [widget.bluetooth]
 enabled = false

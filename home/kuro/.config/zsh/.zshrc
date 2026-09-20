@@ -20,7 +20,6 @@ zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 
 # --- 4. Your Visuals ---
 eval "$(starship init zsh)"
-fastfetch
 
 export EDITOR=nvim
 

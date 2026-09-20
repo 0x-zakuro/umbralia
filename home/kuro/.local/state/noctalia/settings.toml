@@ -77,11 +77,11 @@ widget_order = [ "desktop-widget-0000000000000002" ]
     [desktop_widgets.widget.desktop-widget-0000000000000002]
     box_height = 0.0
     box_width = 0.0
-    cx = 649.2421875
-    cy = 326.70001220703125
+    cx = 692.5250244140625
+    cy = 348.48007202148438
     output = "eDP-1"
-    placement_height = 1080.0
-    placement_width = 1920.0
+    placement_height = 1152.0
+    placement_width = 2048.0
     rotation = 0.0
     type = "button"
 
@@ -145,12 +145,12 @@ widget_order = [
 
     [lockscreen_widgets.widget."lockscreen-login-box@eDP-1"]
     box_height = 70.0
-    box_width = 240.0
-    cx = 960.0
-    cy = 935.0
+    box_width = 264.0
+    cx = 1024.0
+    cy = 1000.0
     output = "eDP-1"
-    placement_height = 1080.0
-    placement_width = 1920.0
+    placement_height = 1152.0
+    placement_width = 2048.0
     rotation = 0.0
     type = "login_box"
 
@@ -173,11 +173,11 @@ widget_order = [
     [lockscreen_widgets.widget.lockscreen-widget-0000000000000001]
     box_height = 112.0
     box_width = 256.0
-    cx = 960.0
-    cy = 292.0
+    cx = 1024.0
+    cy = 311.46670532226562
     output = "eDP-1"
-    placement_height = 1080.0
-    placement_width = 1920.0
+    placement_height = 1152.0
+    placement_width = 2048.0
     rotation = 0.0
     type = "clock"
 
@@ -188,14 +188,14 @@ widget_order = [
         format = "{:%H:%M}"
 
     [lockscreen_widgets.widget.lockscreen-widget-0000000000000002]
-    box_height = 32.0
-    box_width = 208.0
-    cx = 960.0
-    cy = 980.0
+    box_height = 40.0
+    box_width = 288.0
+    cx = 1024.0
+    cy = 1044.0
     output = "eDP-1"
-    placement_height = 1080.0
-    placement_width = 1920.0
-    rotation = -0.0
+    placement_height = 1152.0
+    placement_width = 2048.0
+    rotation = 0.0
     type = "label"
 
         [lockscreen_widgets.widget.lockscreen-widget-0000000000000002.settings]
@@ -203,17 +203,18 @@ widget_order = [
         background_color = "primary"
         background_opacity = 0.0
         background_radius = 18
+        font_family = "Liberation Sans"
         opacity = 1.0
         title = "Enter the password to continue "
 
     [lockscreen_widgets.widget.lockscreen-widget-0000000000000003]
     box_height = 24.0
     box_width = 280.0
-    cx = 960.0
-    cy = 208.0
+    cx = 1024.0
+    cy = 221.86669921875
     output = "eDP-1"
-    placement_height = 1080.0
-    placement_width = 1920.0
+    placement_height = 1152.0
+    placement_width = 2048.0
     rotation = 0.0
     type = "clock"
 
@@ -313,6 +314,10 @@ mode = "dark"
 source = "custom"
 wallpaper_scheme = "dysfunctional"
 
+    [theme.templates]
+    builtin_ids = [ "gtk3", "gtk4", "umbriel" ]
+    community_ids = [ "zed" ]
+
 [wallpaper]
 directory = "/home/kuro/.config/wallpaper/"
 directory_dark = "/home/kuro/.config/wallpaper/dark_wallpaper/"
@@ -325,16 +330,16 @@ transition_on_startup = true
     interval_seconds = 3600
 
     [wallpaper.default]
-    path = "/home/kuro/.config/wallpaper/dark_wallpaper/D-5.png"
+    path = "/home/kuro/.config/wallpaper/dark_wallpaper/D-9.png"
 
     [wallpaper.last]
-    path = "/home/kuro/.config/wallpaper/dark_wallpaper/D-5.png"
+    path = "/home/kuro/.config/wallpaper/dark_wallpaper/D-9.png"
 
     [wallpaper.monitors.WL-1]
     path = "/home/kuro/.config/wallpaper/dark_wallpaper/D-5.png"
 
     [wallpaper.monitors.eDP-1]
-    path = "/home/kuro/.config/wallpaper/dark_wallpaper/D-5.png"
+    path = "/home/kuro/.config/wallpaper/dark_wallpaper/D-9.png"
 
 [widget.bluetooth]
 enabled = false

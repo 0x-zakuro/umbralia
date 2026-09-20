@@ -60,7 +60,7 @@ contrast = 0.9                                # float, 0.0-2.0
 saturation = 1                                # float, 0.0-2.0
 
 [appearance.shadow]
-enabled = true                                # true | false; draw shadows behind non-fullscreen windows
+enabled = false                                # true | false; draw shadows behind non-fullscreen windows
 softness = 10                                 # integer, 0-200; gaussian softness, 0 is a hard edge
 offset_x = 2                                  # integer, -200 to 200 logical px
 offset_y = 2                                  # integer, -200 to 200 logical px
@@ -211,11 +211,8 @@ new_becomes_master = false                    # true | false; true makes a new w
 # -----------------------------------------------------------------------------
 # Selectorless: applies to every window; kept first so later rules can override it
 [[window_rule]]
-blur = true
+blur = false
 blur_optimized = false                        # false forces a per-window blur pass instead of the shared cached one
-
-[[window_rule]]
-opacity = 0.95                                # float, 0.0-1.0
 
 # Noctalia shell windows
 [[window_rule]]
@@ -245,11 +242,11 @@ default_pinned = true                         # true | false; pinned windows sta
 # Dim windows by opacity based on focus state
 [[window_rule]]
 match.is_focused = false                      # state-aware selector; updates live as focus changes
-opacity = 0.85
+opacity = 0.93
 
 [[window_rule]]
 match.is_focused = true
-opacity = 1.0
+opacity = 0.96
 
 # -----------------------------------------------------------------------------
 # Layer rules (panels, launcher, notifications, dock, OSD, widgets)
@@ -265,70 +262,59 @@ blur_optimized = false
 # -----------------------------------------------------------------------------
 # Animation
 # -----------------------------------------------------------------------------
-[animation]                                   # defaults inherited by any [animation.*] event table below that omits a field
-enabled = true                                # true | false; master switch for all animation
-duration_ms = 1000                            # integer, 1-10000 ms
-curve = "easeout"                             # built-in curve name, or a name defined in [animation.beziers]/[animation.springs]
-
-[animation.windows_in]                        # triggered when a window opens
-enabled = true
-duration_ms = 200
-curve = "myBounce"                            # references [animation.springs] below
-style = "slide"                               # popin | zoom | slide | fade | none
-
-[animation.windows_out]                       # triggered when a window closes
-enabled = true
-duration_ms = 200
-curve = "easeout"
-style = "fade"                                # fade | slide
-
-[animation.windows_move]                      # triggered by moving, resizing, or floating-maximize
-enabled = true
-duration_ms = 300
-curve = "snappy"                              # built-in curve name
-
-[animation.workspaces]                        # triggered by switching workspaces
-enabled = true
-duration_ms = 230
-curve = "myBezier"                            # references [animation.beziers] below
-
-[animation.overview]                          # triggered by opening/closing the workspaces overview
+# -----------------------------------------------------------------------------
+# Animation
+# -----------------------------------------------------------------------------
+[animation]
 enabled = true
 duration_ms = 250
-curve = "easeout"
-workspace_curve = "spring:1,1000"             # inline spring syntax: "spring:DAMPING,STIFFNESS"
+curve = "smooth"
 
-[animation.scratchpad]                        # triggered by scratchpad show/hide and its backdrop
-enabled = true
-duration_ms = 190
-curve = "myBounce"
-dim = 0.45                                    # float, 0.0-1.0; backdrop dim amount behind the scratchpad
-blur = true                                   # true | false; requires appearance.blur.enabled = true to have an effect
-scale = 0.92                                  # float, 0 or 0.1-1.0; 0 keeps geometry unchanged, otherwise centers and scales the window
-maximize = false                              # true | false; animate the transition for maximized scratchpad windows
-fullscreen = false                            # true | false; animate the transition for fullscreen scratchpad windows
-
-[animation.border]                            # triggered by the focus border color change
-enabled = true
-duration_ms = 150
-curve = "easeout"
-
-[animation.dim_unfocused]                     # triggered by the unfocused-window dim effect
+[animation.windows_in]                        # windowsIn: popin 85%, speed 4
 enabled = true
 duration_ms = 200
-curve = "easeout"
-dim = 0.15                                    # float, 0.0-1.0; 0 disables dimming
+curve = "smooth"
+style = "popin"
+scale = 0.85
 
-[animation.layers]                            # triggered by layer-shell surfaces mapping/unmapping
+[animation.windows_out]                       # windowsOut: popin 90%, speed 3
 enabled = true
-duration_ms = 160
-curve = "easeout"
+duration_ms = 150
+curve = "quick"
+style = "fade"
 
-[animation.beziers]                           # custom cubic-bezier curves: NAME = [x1, y1, x2, y2]
-myBezier = [0.16, 1, 0.3, 1]                  # referenced as curve = "myBezier" above
+[animation.windows_move]                      # windowsMove: speed 3, quick
+enabled = true
+duration_ms = 150
+curve = "quick"
 
-[animation.springs]                           # custom spring curves: NAME = { damping = ..., stiffness = ... }
-myBounce = { damping = 0.65, stiffness = 260 }  # damping 0.0-1.0, stiffness > 0; referenced as curve = "myBounce" above
+[animation.workspaces]                        # workspaces: slidefade 20%, speed 5
+enabled = true
+duration_ms = 250
+curve = "smooth"
+
+[animation.overview]                          # specialWorkspace: slidefadevert 5%, speed 3
+enabled = true
+duration_ms = 150
+curve = "smooth"
+workspace_curve = "smooth"
+
+[animation.layers]                            # layers/layersIn/layersOut/fadeLayers, speed 3, quick
+enabled = true
+duration_ms = 150
+curve = "quick"
+
+[animation.border]
+enabled = true
+duration_ms = 150
+curve = "easeOutQuint"
+
+[animation.beziers]
+smooth       = [0.22, 1, 0.1, 1.1]
+quick        = [0.15, 0.85, 0.25, 1.0]
+overshot     = [0.05, 0.9, 0.1, 1.08]
+linearish    = [0.3, 0.0, 0.7, 1.0]
+easeOutQuint = [0.23, 1, 0.32, 1]
 
 # -----------------------------------------------------------------------------
 # Workspaces overview

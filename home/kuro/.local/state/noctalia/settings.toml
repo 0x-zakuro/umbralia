@@ -6,6 +6,7 @@ order = [ "default" ]
     [bar.default]
     background_opacity = 0.0
     capsule = true
+    capsule_opacity = 0.59999998658895493
     capsule_padding = 8.0
     capsule_radius = 5
     capsule_thickness = 0.84999998472630978
@@ -36,7 +37,7 @@ order = [ "default" ]
         fill = "surface_variant"
         id = "g1"
         members = [ "wallpaper", "control-center" ]
-        opacity = 1.0
+        opacity = 0.60000002384185791
         padding = 8.0
         radius = 5.0
 
@@ -309,7 +310,7 @@ settings_window_translucent = true
 
 [theme]
 community_palette = "ADW"
-custom_palette = "noctalia_blue"
+custom_palette = "noctalia_red"
 mode = "dark"
 source = "custom"
 wallpaper_scheme = "dysfunctional"
@@ -330,16 +331,16 @@ transition_on_startup = true
     interval_seconds = 3600
 
     [wallpaper.default]
-    path = "/home/kuro/.config/wallpaper/dark_wallpaper/D-9.png"
+    path = "/home/kuro/.config/wallpaper/light_wallpaper/L-1.jpg"
 
     [wallpaper.last]
-    path = "/home/kuro/.config/wallpaper/dark_wallpaper/D-9.png"
+    path = "/home/kuro/.config/wallpaper/light_wallpaper/L-1.jpg"
 
     [wallpaper.monitors.WL-1]
     path = "/home/kuro/.config/wallpaper/dark_wallpaper/D-5.png"
 
     [wallpaper.monitors.eDP-1]
-    path = "/home/kuro/.config/wallpaper/dark_wallpaper/D-9.png"
+    path = "/home/kuro/.config/wallpaper/light_wallpaper/L-1.jpg"
 
 [widget.bluetooth]
 enabled = false

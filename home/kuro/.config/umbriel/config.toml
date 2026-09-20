@@ -15,10 +15,8 @@ honor_restored_maximize = false               # true | false; restore a window's
 # -----------------------------------------------------------------------------
 # External config includes
 # -----------------------------------------------------------------------------
-[include.optional]                            # files merged in if present; missing paths are skipped without error
-files = [
-    "~/.config/umbriel/noctalia.toml",
-]
+[include]                                     # files merged in if present; missing paths are skipped without error
+files = ["noctalia.toml"]
 
 # -----------------------------------------------------------------------------
 # Output / monitor setup

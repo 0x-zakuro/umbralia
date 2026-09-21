@@ -40,12 +40,12 @@ empty_above = false                           # true | false; keep one empty wor
 # Appearance: colors, decoration, blur, shadow
 # -----------------------------------------------------------------------------
 [colors.border]
-focused = "#9a9a9a"                           # hex color of the focused window's border
+focused = "#29a3d6"                           # hex color of the focused window's border
 
 [appearance]
 prefer_no_csd = true                          # true | false; true uses Umbriel's border-only decoration instead of app CSD
-border_width = 2                              # integer, 0-100 logical px
-outer_border_width = 2                        # integer, 0-100 logical px; additional ring outside border_width
+border_width = 3                              # integer, 0-100 logical px
+outer_border_width = 0                        # integer, 0-100 logical px; additional ring outside border_width
 corner_radius = 10                            # integer, 0-100 logical px
 drag_opacity = 0.65                           # float, 0.0-1.0; window opacity while being dragged
 
@@ -242,11 +242,11 @@ default_pinned = true                         # true | false; pinned windows sta
 # Dim windows by opacity based on focus state
 [[window_rule]]
 match.is_focused = false                      # state-aware selector; updates live as focus changes
-opacity = 0.93
+opacity = 0.90
 
 [[window_rule]]
 match.is_focused = true
-opacity = 0.96
+opacity = 0.94
 
 # -----------------------------------------------------------------------------
 # Layer rules (panels, launcher, notifications, dock, OSD, widgets)

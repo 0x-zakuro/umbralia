@@ -6,7 +6,7 @@ order = [ "default" ]
     [bar.default]
     background_opacity = 0.0
     capsule = true
-    capsule_opacity = 0.59999998658895493
+    capsule_opacity = 0.84999998100101948
     capsule_padding = 8.0
     capsule_radius = 5
     capsule_thickness = 0.84999998472630978
@@ -37,7 +37,7 @@ order = [ "default" ]
         fill = "surface_variant"
         id = "g1"
         members = [ "wallpaper", "control-center" ]
-        opacity = 0.60000002384185791
+        opacity = 0.85000002384185791
         padding = 8.0
         radius = 5.0
 
@@ -93,6 +93,9 @@ widget_order = [ "desktop-widget-0000000000000002" ]
 
 [dock]
 position = "top"
+
+[hooks]
+theme_mode_changed = "pkill --signal $([ \"$NOCTALIA_THEME_MODE\" = dark ] && echo USR1 || echo USR2) -f '^foot$'"
 
 [idle]
 pre_action_fade_seconds = 30
@@ -309,14 +312,14 @@ settings_window_translucent = true
         variant = "destructive"
 
 [theme]
-community_palette = "ADW"
-custom_palette = "noctalia_red"
-mode = "dark"
+community_palette = "One Dark Two"
+custom_palette = "oxocarbon"
+mode = "light"
 source = "custom"
 wallpaper_scheme = "dysfunctional"
 
     [theme.templates]
-    builtin_ids = [ "gtk3", "gtk4", "umbriel" ]
+    builtin_ids = [ "foot", "gtk3", "gtk4", "umbriel" ]
     community_ids = [ "zed" ]
 
 [wallpaper]
@@ -331,16 +334,20 @@ transition_on_startup = true
     interval_seconds = 3600
 
     [wallpaper.default]
-    path = "/home/kuro/.config/wallpaper/light_wallpaper/L-1.jpg"
+    path = "/home/kuro/.config/wallpaper/light_wallpaper/L-4.jpg"
 
     [wallpaper.last]
-    path = "/home/kuro/.config/wallpaper/light_wallpaper/L-1.jpg"
+    path = "/home/kuro/.config/wallpaper/light_wallpaper/L-4.jpg"
 
     [wallpaper.monitors.WL-1]
     path = "/home/kuro/.config/wallpaper/dark_wallpaper/D-5.png"
 
     [wallpaper.monitors.eDP-1]
-    path = "/home/kuro/.config/wallpaper/light_wallpaper/L-1.jpg"
+    path = "/home/kuro/.config/wallpaper/light_wallpaper/L-4.jpg"
+
+    [[wallpaper.favorite]]
+    path = "/home/kuro/.config/wallpaper/light_wallpaper/L-2.jpg"
+    theme_mode = "auto"
 
 [widget.bluetooth]
 enabled = false

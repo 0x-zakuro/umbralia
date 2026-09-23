@@ -16,7 +16,7 @@ order = [ "default" ]
     font_family = "Liberation Sans"
     font_weight = 700
     margin_ends = 0
-    padding = 10
+    padding = 20
     radius = 8
     scale = 1.1000000089406967
     shadow = false
@@ -326,7 +326,7 @@ wallpaper_scheme = "dysfunctional"
 directory = "/home/kuro/.config/wallpaper/"
 directory_dark = "/home/kuro/.config/wallpaper/dark_wallpaper/"
 directory_light = "/home/kuro/.config/wallpaper/light_wallpaper/"
-transition = [ "fade", "wipe" ]
+transition = [ "wipe" ]
 transition_on_startup = true
 
     [wallpaper.automation]
@@ -334,19 +334,19 @@ transition_on_startup = true
     interval_seconds = 3600
 
     [wallpaper.default]
-    path = "/home/kuro/.config/wallpaper/light_wallpaper/L-4.jpg"
+    path = "/home/kuro/.config/wallpaper/light_wallpaper/D-5.jpg"
 
     [wallpaper.last]
-    path = "/home/kuro/.config/wallpaper/light_wallpaper/L-4.jpg"
+    path = "/home/kuro/.config/wallpaper/light_wallpaper/D-5.jpg"
 
     [wallpaper.monitors.WL-1]
-    path = "/home/kuro/.config/wallpaper/dark_wallpaper/D-5.png"
+    path = "/home/kuro/.config/wallpaper/dark_wallpaper/D-5.jpg"
 
     [wallpaper.monitors.eDP-1]
-    path = "/home/kuro/.config/wallpaper/light_wallpaper/L-4.jpg"
+    path = "/home/kuro/.config/wallpaper/light_wallpaper/D-5.jpg"
 
     [[wallpaper.favorite]]
-    path = "/home/kuro/.config/wallpaper/light_wallpaper/L-2.jpg"
+    path = "/home/kuro/.config/wallpaper/light_wallpaper/D-5.jpg"
     theme_mode = "auto"
 
 [widget.bluetooth]

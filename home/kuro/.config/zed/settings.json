@@ -23,14 +23,14 @@
   "base_keymap": "VSCode",
   "icon_theme": {
     "mode": "dark",
-    "light": "Zed (Default)",
+    "light": "Material Icon Theme",
     "dark": "Material Icon Theme"
   },
   "ui_font_size": 16,
   "buffer_font_size": 15,
   "theme": {
-    "mode": "system",
-    "light": "Onyx Light",
-    "dark": "Onyx Dark",
+    "mode": "dark",
+    "light": "Noctalia Light",
+    "dark": "Noctalia Dark",
   },
 }

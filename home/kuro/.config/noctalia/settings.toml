@@ -248,7 +248,8 @@ external_ip_enabled = true
 font_family = "Liberation Sans"
 password_style = "random"
 polkit_agent = true
-settings_window_translucent = true
+settings_window_translucent = false
+screen_time_enabled = true
 
     [shell.greeter_sync]
     auto_sync = true
@@ -264,9 +265,11 @@ settings_window_translucent = true
         global = false
 
     [shell.panel]
-    control_center_placement = "floating"
-    control_center_position = "top_right"
-    open_near_click_session = true
+    control_center_position = "auto"
+    open_near_click_control_center = true
+    transparency_mode = "soft"
+    wallpaper_placement = "floating"
+    wallpaper_position = "bottom_center"
 
     [shell.screenshot]
     annotate = true
@@ -312,15 +315,15 @@ settings_window_translucent = true
         variant = "destructive"
 
 [theme]
-community_palette = "One Dark Two"
+community_palette = "Aura"
 custom_palette = "oxocarbon"
-mode = "light"
+mode = "dark"
 source = "custom"
 wallpaper_scheme = "dysfunctional"
 
     [theme.templates]
     builtin_ids = [ "foot", "gtk3", "gtk4", "umbriel" ]
-    community_ids = [ "zed" ]
+    community_ids = [ "zed", "yazi", "obsidian" ]
 
 [wallpaper]
 directory = "/home/kuro/.config/wallpaper/"
@@ -334,10 +337,10 @@ transition_on_startup = true
     interval_seconds = 3600
 
     [wallpaper.default]
-    path = "/home/kuro/.config/wallpaper/light_wallpaper/D-5.jpg"
+    path = "/home/kuro/.config/wallpaper/homescreen.jpg"
 
     [wallpaper.last]
-    path = "/home/kuro/.config/wallpaper/light_wallpaper/D-5.jpg"
+    path = "/home/kuro/.config/wallpaper/homescreen.jpg"
 
     [wallpaper.monitors.WL-1]
     path = "/home/kuro/.config/wallpaper/dark_wallpaper/D-5.jpg"

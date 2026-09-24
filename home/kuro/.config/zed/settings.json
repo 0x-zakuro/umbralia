@@ -33,4 +33,7 @@
     "light": "Noctalia Light",
     "dark": "Noctalia Dark",
   },
+  "auto_install_extensions": {
+    "material-icon-theme": true
+  }
 }

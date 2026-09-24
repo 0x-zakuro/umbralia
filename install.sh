@@ -11,58 +11,76 @@ LOG_FILE="$HOME/umbralia-install.log"
 
 # ── Color palette (respects NO_COLOR / non-tty) ──────────────
 if [[ -t 1 && -z "${NO_COLOR:-}" ]]; then
-    B=$'\033[1m';  D=$'\033[2m';  R=$'\033[0m'
-    GREEN=$'\033[38;5;71m';   YELLOW=$'\033[38;5;178m'
-    RED=$'\033[38;5;167m';    BLUE=$'\033[38;5;110m'
-    GRAY=$'\033[38;5;244m'
+  B=$'\033[1m'
+  D=$'\033[2m'
+  R=$'\033[0m'
+  GREEN=$'\033[38;5;71m'
+  YELLOW=$'\033[38;5;178m'
+  RED=$'\033[38;5;167m'
+  BLUE=$'\033[38;5;110m'
+  GRAY=$'\033[38;5;244m'
 else
-    B=''; D=''; R=''; GREEN=''; YELLOW=''; RED=''; BLUE=''; GRAY=''
+  B=''
+  D=''
+  R=''
+  GREEN=''
+  YELLOW=''
+  RED=''
+  BLUE=''
+  GRAY=''
 fi
 
 # ── Printers ─────────────────────────────────────────────────
-line()  { printf "${GRAY}%s${R}\n" "────────────────────────────────────────────────────────────"; }
-hdr()   { printf "${B}%s${R}\n" "$1"; }
-info()  { printf "  ${BLUE}[INFO]${R}  %s\n" "$1"; }
-ok()    { printf "  ${GREEN}[ OK ]${R}  %s\n" "$1"; }
-warn()  { printf "  ${YELLOW}[WARN]${R}  %s\n" "$1"; }
-err()   { printf "  ${RED}[FAIL]${R}  %s\n" "$1" >&2; }
+line() { printf "${GRAY}%s${R}\n" "────────────────────────────────────────────────────────────"; }
+hdr() { printf "${B}%s${R}\n" "$1"; }
+info() { printf "  ${BLUE}[INFO]${R}  %s\n" "$1"; }
+ok() { printf "  ${GREEN}[ OK ]${R}  %s\n" "$1"; }
+warn() { printf "  ${YELLOW}[WARN]${R}  %s\n" "$1"; }
+err() { printf "  ${RED}[FAIL]${R}  %s\n" "$1" >&2; }
 
-step() {  # step 3 9 "Official packages"
-    local n="$1" total="$2" title="$3"
-    printf "\n${B}[%d/%d]${R} ${B}%s${R}\n" "$n" "$total" "$title"
-    line
+step() { # step 3 9 "Official packages"
+  local n="$1" total="$2" title="$3"
+  printf "\n${B}[%d/%d]${R} ${B}%s${R}\n" "$n" "$total" "$title"
+  line
 }
 
-die() { err "$1"; exit 1; }
+die() {
+  err "$1"
+  exit 1
+}
 
 # ── Pre-flight checks ─────────────────────────────────────────
 clear 2>/dev/null || true
 printf "\n${B}UMBRALIA${R} ${GRAY}—${R} dotfiles & system installer\n"
 line
 printf "  ${GRAY}%-9s${R} %s\n" "dotfiles" "$DOTFILES_DIR"
-printf "  ${GRAY}%-9s${R} %s\n" "backups"  "$BACKUP_DIR"
-printf "  ${GRAY}%-9s${R} %s\n" "log"      "$LOG_FILE"
+printf "  ${GRAY}%-9s${R} %s\n" "backups" "$BACKUP_DIR"
+printf "  ${GRAY}%-9s${R} %s\n" "log" "$LOG_FILE"
 line
 
-[[ $EUID -eq 0 ]]           && die "Do NOT run as root — run as your normal user."
+[[ $EUID -eq 0 ]] && die "Do NOT run as root — run as your normal user."
 command -v pacman &>/dev/null || die "This script targets Arch Linux (pacman not found)."
 ping -c1 -W3 archlinux.org &>/dev/null || die "No network connection detected."
 
-mkdir -p "$BACKUP_DIR"; touch "$LOG_FILE"
+mkdir -p "$BACKUP_DIR"
+touch "$LOG_FILE"
 
 # Cache sudo + keep it alive for the whole script
 sudo -v
-( while true; do sudo -nv; sleep 55; done ) &
+(while true; do
+  sudo -nv
+  sleep 55
+done) &
 SUDO_KEEPALIVE=$!
 trap 'kill $SUDO_KEEPALIVE 2>/dev/null || true' EXIT
 
 backup() {
-    local path="$1"
-    if [[ -e "$path" ]]; then
-        mkdir -p "$BACKUP_DIR$(dirname "$path")"
-        cp -a "$path" "$BACKUP_DIR$path"
-        info "${D}backed up →${R} $path"
-    fi
+  local path="$1"
+  if [[ -e "$path" ]]; then
+    mkdir -p "$BACKUP_DIR$(dirname "$path")"
+    cp -a "$path" "$BACKUP_DIR$path"
+    info "${D}backed up →${R} $path"
+  fi
 }
 
 # ─────────────────────────────────────────────────────────────
@@ -88,57 +106,57 @@ grep -q GenuineIntel /proc/cpuinfo && UCODE="intel-ucode"
 info "microcode: $UCODE"
 
 sudo pacman -Syu --needed --noconfirm \
-    "$UCODE" \
-    adw-gtk-theme base-devel ffmpegthumbnailer foot gnome-boxes gthumb gvfs gvfs-mtp \
-    mpv neovim noctalia ntfs-3g obsidian openssh starship \
-    thunar-archive-plugin thunar-volman tumbler udisks2 zed zsh \
-    zsh-autosuggestions zsh-syntax-highlighting
+  "$UCODE" \
+  adw-gtk-theme base-devel ffmpegthumbnailer foot gthumb gvfs gvfs-mtp \
+  mpv neovim noctalia ntfs-3g obsidian openssh starship \
+  thunar-archive-plugin thunar-volman tumbler udisks2 zed zsh \
+  zsh-autosuggestions zsh-syntax-highlighting
 ok "pacman packages installed"
 
 # ─────────────────────────────────────────────────────────────
 step 4 9 "yay (AUR helper)"
 if command -v yay &>/dev/null; then
-    info "yay already installed — skipping"
+  info "yay already installed — skipping"
 else
-    tmpdir="$(mktemp -d)"
-    trap 'rm -rf "$tmpdir"; kill $SUDO_KEEPALIVE 2>/dev/null || true' EXIT
-    git clone --quiet https://aur.archlinux.org/yay.git "$tmpdir/yay"
-    (cd "$tmpdir/yay" && makepkg -si --noconfirm)
-    rm -rf "$tmpdir"
-    rm -rf "$HOME/.cache/go"
-    if pacman -Qi go &>/dev/null && \
-       [[ "$(pacman -Qi go | awk -F': ' '/Install Reason/{print $2}')" == *"dependency"* ]]; then
-        sudo pacman -Rns --noconfirm go
-    fi
-    ok "yay built & installed"
+  tmpdir="$(mktemp -d)"
+  trap 'rm -rf "$tmpdir"; kill $SUDO_KEEPALIVE 2>/dev/null || true' EXIT
+  git clone --quiet https://aur.archlinux.org/yay.git "$tmpdir/yay"
+  (cd "$tmpdir/yay" && makepkg -si --noconfirm)
+  rm -rf "$tmpdir"
+  rm -rf "$HOME/.cache/go"
+  if pacman -Qi go &>/dev/null &&
+    [[ "$(pacman -Qi go | awk -F': ' '/Install Reason/{print $2}')" == *"dependency"* ]]; then
+    sudo pacman -Rns --noconfirm go
+  fi
+  ok "yay built & installed"
 fi
 
 # ─────────────────────────────────────────────────────────────
 step 5 9 "AUR packages"
 yay -S --needed --noconfirm \
-    helium-browser-bin localsend-bin mpv-uosc-git noctalia-greeter qt6ct-kde umbriel-git
+  helium-browser-bin localsend-bin motrix-next-bin mpv-uosc-git noctalia-greeter qt6ct-kde umbriel-git
 ok "AUR packages installed"
 
 # ─────────────────────────────────────────────────────────────
 step 6 9 "Snapper tuning"
 for cfg in /etc/snapper/configs/root /etc/snapper/configs/home; do
-    if [[ -f "$cfg" ]]; then
-        sudo sed -i \
-            -e 's/^TIMELINE_LIMIT_HOURLY=.*/TIMELINE_LIMIT_HOURLY="4"/' \
-            -e 's/^TIMELINE_LIMIT_DAILY=.*/TIMELINE_LIMIT_DAILY="0"/' \
-            -e 's/^TIMELINE_LIMIT_WEEKLY=.*/TIMELINE_LIMIT_WEEKLY="3"/' \
-            -e 's/^TIMELINE_LIMIT_MONTHLY=.*/TIMELINE_LIMIT_MONTHLY="3"/' \
-            -e 's/^TIMELINE_LIMIT_QUARTERLY=.*/TIMELINE_LIMIT_QUARTERLY="0"/' \
-            -e 's/^TIMELINE_LIMIT_YEARLY=.*/TIMELINE_LIMIT_YEARLY="0"/' \
-            "$cfg"
-        ok "tuned $(basename "$cfg")"
-    else
-        warn "$cfg not found — skipped"
-    fi
+  if [[ -f "$cfg" ]]; then
+    sudo sed -i \
+      -e 's/^TIMELINE_LIMIT_HOURLY=.*/TIMELINE_LIMIT_HOURLY="4"/' \
+      -e 's/^TIMELINE_LIMIT_DAILY=.*/TIMELINE_LIMIT_DAILY="0"/' \
+      -e 's/^TIMELINE_LIMIT_WEEKLY=.*/TIMELINE_LIMIT_WEEKLY="3"/' \
+      -e 's/^TIMELINE_LIMIT_MONTHLY=.*/TIMELINE_LIMIT_MONTHLY="3"/' \
+      -e 's/^TIMELINE_LIMIT_QUARTERLY=.*/TIMELINE_LIMIT_QUARTERLY="0"/' \
+      -e 's/^TIMELINE_LIMIT_YEARLY=.*/TIMELINE_LIMIT_YEARLY="0"/' \
+      "$cfg"
+    ok "tuned $(basename "$cfg")"
+  else
+    warn "$cfg not found — skipped"
+  fi
 done
 
 sudo mkdir -p /etc/systemd/system/snapper-timeline.timer.d
-sudo tee /etc/systemd/system/snapper-timeline.timer.d/override.conf >/dev/null << 'EOF'
+sudo tee /etc/systemd/system/snapper-timeline.timer.d/override.conf >/dev/null <<'EOF'
 [Timer]
 OnCalendar=
 OnCalendar=00/6:00
@@ -152,13 +170,13 @@ step 7 9 "Services"
 sudo systemctl enable --now NetworkManager bluetooth fstrim.timer udisks2
 sudo systemctl enable greetd
 for svc in NetworkManager bluetooth fstrim.timer udisks2 greetd; do
-    ok "enabled ${D}$svc${R}"
+  ok "enabled ${D}$svc${R}"
 done
 
 # ─────────────────────────────────────────────────────────────
 step 8 9 "Zsh as default shell"
 if [[ ! -f /etc/zsh/zshenv ]] || ! grep -q 'ZDOTDIR' /etc/zsh/zshenv; then
-    echo 'export ZDOTDIR=$HOME/.config/zsh' | sudo tee -a /etc/zsh/zshenv >/dev/null
+  echo 'export ZDOTDIR=$HOME/.config/zsh' | sudo tee -a /etc/zsh/zshenv >/dev/null
 fi
 chsh -s /usr/bin/zsh
 ok "shell → zsh"
@@ -167,7 +185,7 @@ ok "shell → zsh"
 printf "\n${GREEN}${B}Installation complete.${R} Reboot to apply all changes.\n"
 line
 printf "  ${GRAY}%-9s${R} %s\n" "backups" "$BACKUP_DIR"
-printf "  ${GRAY}%-9s${R} %s\n" "log"     "$LOG_FILE"
+printf "  ${GRAY}%-9s${R} %s\n" "log" "$LOG_FILE"
 line
 printf "Press ${B}Enter${R} to reboot now, or ${B}Ctrl+C${R} to reboot later… "
 read -r

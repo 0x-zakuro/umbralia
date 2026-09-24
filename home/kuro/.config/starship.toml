@@ -6,8 +6,8 @@ format = """$username$hostname $directory$git_branch$git_status$aws$terraform$ku
 
 # #42be65 = Oxocarbon green, #ee5396 = Oxocarbon red/pink
 [character]
-success_symbol = "[ ](bold #42be65)"
-error_symbol   = "[ ](bold #ee5396)"
+success_symbol = "[ >](bold #42be65)"
+error_symbol   = "[ >](bold #ee5396)"
 
 [fill]
 symbol = "─"
@@ -16,7 +16,7 @@ style  = "#333333"
 [time]
 disabled    = false
 time_format = "%T "
-style       = "#ffffff"
+style       = "#9e9e9e"
 format      = "[$time]($style)"
 
 [username]
@@ -32,7 +32,7 @@ format   = "[@$hostname]($style)"
 
 [directory]
 style             = "bold #3ddbd9"
-truncation_length = 4
+truncation_length = 0
 truncate_to_repo  = true
 format            = "[$path]($style)[$read_only]($read_only_style) "
 read_only         = "󰌾 "

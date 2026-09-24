@@ -1,4 +1,4 @@
-.zprof# --- 1. Basic Options ---
+# --- 1. Basic Options ---
 autoload -U compinit; compinit  # Enables the advanced tab completion system
 setopt correct                  # Auto-corrects minor spelling mistakes (sl -> ls)
 

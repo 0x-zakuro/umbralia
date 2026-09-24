@@ -116,7 +116,7 @@ fi
 # ─────────────────────────────────────────────────────────────
 step 5 9 "AUR packages"
 yay -S --needed --noconfirm \
-    helium-browser-bin localsend-bin mpv-uosc-git noctalia-greeter qt6ct-kde umbriel-git
+    helium-browser-bin localsend-bin mpv-uosc-git noctalia-greeter qt6ct-kde umbriel
 ok "AUR packages installed"
 
 # ─────────────────────────────────────────────────────────────

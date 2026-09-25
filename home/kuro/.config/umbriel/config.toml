@@ -92,7 +92,7 @@ scroll_wheel_step = 60                        # integer, 1-1000; logical px scro
 enabled = true                                # true | false; false disables all tablet tools and pads
 
 [input.cursor]
-theme = ""                                    # Xcursor theme name; empty uses the environment/system default
+theme = "Bibata-Modern-Ice"                   # Xcursor theme name; empty uses the environment/system default
 size = 24                                     # integer, 1-512 logical px
 hardware_cursor = true                        # true | false; false forces the cursor to be software-composited
 follows_focus = false                         # true | false; warp the cursor to a window when it receives focus

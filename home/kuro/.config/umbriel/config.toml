@@ -140,10 +140,14 @@ follows_mouse = true                          # true | false; focus the window u
 "Mod+Shift+Right" = "column-move-right"
 "Mod+Comma" = "window-consume-left"           # merge the column/window to the left into the current column
 "Mod+Period" = "window-consume-right"         # merge the column/window to the right into the current column
-"Mod+Ctrl+Left" = "window-modify-width-left:0.05"  # trailing number is the resize step as a fraction of usable width/height
+"Mod+Ctrl+Left" = "window-modify-width-left:0.05"
 "Mod+Ctrl+Right" = "window-modify-width-right:0.05"
 "Mod+Ctrl+Up" = "window-modify-height-up:0.05"
 "Mod+Ctrl+Down" = "window-modify-height-down:0.05"
+"Mod+Alt+Left" = "window-modify-width-right:-0.05"
+"Mod+Alt+Right" = "window-modify-width-left:-0.05"
+"Mod+Alt+Up" = "window-modify-height-down:-0.05"
+"Mod+Alt+Down" = "window-modify-height-up:-0.05"
 
 # Workspaces: switch (1-9) and move focused window to (Shift+1-9)
 "Mod+1" = "workspace-switch:1"

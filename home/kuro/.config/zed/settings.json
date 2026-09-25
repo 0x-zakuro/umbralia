@@ -34,6 +34,9 @@
     "dark": "Noctalia Dark",
   },
   "auto_install_extensions": {
-    "material-icon-theme": true
+    "material-icon-theme": true,
+    "toml": true,
+    "lua": true,
+    "jinja2-template-support": true
   }
 }

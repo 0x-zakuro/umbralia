@@ -107,10 +107,7 @@ info "microcode: $UCODE"
 
 sudo pacman -Syu --needed --noconfirm \
   "$UCODE" \
-  adw-gtk-theme base-devel ffmpegthumbnailer foot gthumb gvfs gvfs-mtp \
-  mpv neovim noctalia ntfs-3g obsidian openssh starship \
-  thunar-archive-plugin thunar-volman tumbler udisks2 zed zsh \
-  zsh-autosuggestions zsh-syntax-highlighting
+  adw-gtk-theme base-devel ffmpegthumbnailer foot gthumb gvfs gvfs-mtp mpv neovim noctalia ntfs-3g obsidian openssh starship thunar-archive-plugin thunar-volman tumbler udisks2 unzip xarchiver zed zsh zsh-autosuggestions zsh-syntax-highlighting
 ok "pacman packages installed"
 
 # ─────────────────────────────────────────────────────────────

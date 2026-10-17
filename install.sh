@@ -96,6 +96,10 @@ step 2 9 "System config → /etc"
 sudo cp -r "$DOTFILES_DIR/etc/." /etc/
 ok "/etc merged"
 
+info "enabling NVIDIA runtime power management…"
+echo 'ACTION=="add", SUBSYSTEM=="pci", ATTR{vendor}=="0x10de", ATTR{power/control}="auto"' | sudo tee /etc/udev/rules.d/80-nvidia-pm.rules >/dev/null
+ok "NVIDIA power rule installed"
+
 info "refreshing font cache…"
 fc-cache -f "$TARGET_HOME/.local/share/fonts" 2>/dev/null || true
 
@@ -107,7 +111,7 @@ info "microcode: $UCODE"
 
 sudo pacman -Syu --needed --noconfirm \
   "$UCODE" \
-  adw-gtk-theme base-devel ffmpegthumbnailer foot gthumb gvfs gvfs-mtp mpv neovim noctalia ntfs-3g obsidian openssh starship thunar-archive-plugin thunar-volman tumbler udisks2 unzip xarchiver zed zsh zsh-autosuggestions zsh-syntax-highlighting
+  adw-gtk-theme base-devel ffmpegthumbnailer foot gthumb gvfs gvfs-mtp libva-mesa-driver mesa mpv neovim noctalia ntfs-3g obsidian openssh starship thunar-archive-plugin thunar-volman tumbler udisks2 unzip vulkan-radeon xarchiver zed zsh zsh-autosuggestions zsh-syntax-highlighting
 ok "pacman packages installed"
 
 # ─────────────────────────────────────────────────────────────

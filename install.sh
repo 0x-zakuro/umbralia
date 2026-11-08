@@ -111,7 +111,7 @@ info "microcode: $UCODE"
 
 sudo pacman -Syu --needed --noconfirm \
   "$UCODE" \
-  adw-gtk-theme base-devel ffmpegthumbnailer foot gthumb gvfs gvfs-mtp libva-mesa-driver mesa mpv neovim noctalia ntfs-3g obsidian openssh starship thunar-archive-plugin thunar-volman tumbler udisks2 unzip vulkan-radeon xarchiver zed zsh zsh-autosuggestions zsh-syntax-highlighting
+  adw-gtk-theme base-devel ffmpegthumbnailer foot gthumb gvfs gvfs-mtp libva-mesa-driver loupe mesa mpv neovim noctalia ntfs-3g obsidian openssh starship thunar-archive-plugin thunar-volman tumbler udisks2 unzip vulkan-radeon xarchiver zed zsh zsh-autosuggestions zsh-syntax-highlighting
 ok "pacman packages installed"
 
 # ─────────────────────────────────────────────────────────────
@@ -135,7 +135,7 @@ fi
 # ─────────────────────────────────────────────────────────────
 step 5 9 "AUR packages"
 yay -S --needed --noconfirm \
-  helium-browser-bin localsend-bin motrix-next-bin mpv-uosc-git noctalia-greeter qt6ct-kde umbriel-git
+  helium-browser-bin localsend-bin rayburst-bin mpv-uosc-git noctalia-greeter qt6ct-kde umbriel-git
 ok "AUR packages installed"
 
 # ─────────────────────────────────────────────────────────────

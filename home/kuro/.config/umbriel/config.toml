@@ -16,7 +16,7 @@ honor_restored_maximize = false               # true | false; restore a window's
 # External config includes
 # -----------------------------------------------------------------------------
 [include]                                     # files merged in if present; missing paths are skipped without error
-files = ["noctalia.toml"]
+files = []
 
 # -----------------------------------------------------------------------------
 # Output / monitor setup
@@ -108,15 +108,15 @@ follows_mouse = true                          # true | false; focus the window u
 [keybinds]                                    # each entry is "Modifier+Key" = action string, or a table with extra fields
 
 # Screenshots & session
-"Mod+S" = { action = "spawn:noctalia msg screenshot-fullscreen" }
-"Mod+Shift+S" = { action = "spawn:noctalia msg screenshot-region" }
-"Mod+Shift+L" = { action = "spawn:noctalia msg session lock" }
+"Mod+S" = { action = "spawn noctalia msg screenshot-fullscreen" }
+"Mod+Shift+S" = { action = "spawn noctalia msg screenshot-region" }
+"Mod+Shift+L" = { action = "spawn noctalia msg session lock" }
 "Mod+Escape" = "session-quit"
 "Mod+Return" = "cheatsheet-toggle"
 
 # App launching / windows
-"Mod+A" = "spawn:foot"
-"Mod" = "spawn:noctalia msg panel-toggle launcher"  # bound to Mod alone, no additional key
+"Mod+A" = "spawn foot"
+"Mod" = "spawn noctalia msg panel-toggle launcher"  # bound to Mod alone, no additional key
 "Mod+Q" = "window-close"
 "Mod+T" = "window-toggle-floating"
 "Mod+F" = "window-toggle-fullscreen"
@@ -128,46 +128,36 @@ follows_mouse = true                          # true | false; focus the window u
 "Mod+Down" = "window-focus-down"
 "Mod+Up" = "window-focus-up"
 "Mod+Right" = "window-focus-right"
-"Mod+H" = "window-focus-left"
-"Mod+J" = "window-focus-down"
-"Mod+K" = "window-focus-up"
-"Mod+L" = "window-focus-right"
 
 # Window/column movement and sizing
 "Mod+Shift+Left" = "column-move-left"
 "Mod+Shift+Down" = "window-move-down"
 "Mod+Shift+Up" = "window-move-up"
 "Mod+Shift+Right" = "column-move-right"
-"Mod+Comma" = "window-consume-left"           # merge the column/window to the left into the current column
-"Mod+Period" = "window-consume-right"         # merge the column/window to the right into the current column
-"Mod+Ctrl+Left" = "window-modify-width-left:0.05"
-"Mod+Ctrl+Right" = "window-modify-width-right:0.05"
-"Mod+Ctrl+Up" = "window-modify-height-up:0.05"
-"Mod+Ctrl+Down" = "window-modify-height-down:0.05"
-"Mod+Alt+Left" = "window-modify-width-right:-0.05"
-"Mod+Alt+Right" = "window-modify-width-left:-0.05"
-"Mod+Alt+Up" = "window-modify-height-down:-0.05"
-"Mod+Alt+Down" = "window-modify-height-up:-0.05"
+"Mod+Ctrl+Left" = "window-modify-primary-extent -0.05"
+"Mod+Ctrl+Right" = "window-modify-primary-extent +0.05"
+"Mod+Ctrl+Up" = "window-modify-secondary-extent +0.05"
+"Mod+Ctrl+Down" = "window-modify-secondary-extent -0.05"
 
 # Workspaces: switch (1-9) and move focused window to (Shift+1-9)
-"Mod+1" = "workspace-switch:1"
-"Mod+2" = "workspace-switch:2"
-"Mod+3" = "workspace-switch:3"
-"Mod+4" = "workspace-switch:4"
-"Mod+5" = "workspace-switch:5"
-"Mod+6" = "workspace-switch:6"
-"Mod+7" = "workspace-switch:7"
-"Mod+8" = "workspace-switch:8"
-"Mod+9" = "workspace-switch:9"
-"Mod+Shift+1" = "window-move-to-workspace:1"
-"Mod+Shift+2" = "window-move-to-workspace:2"
-"Mod+Shift+3" = "window-move-to-workspace:3"
-"Mod+Shift+4" = "window-move-to-workspace:4"
-"Mod+Shift+5" = "window-move-to-workspace:5"
-"Mod+Shift+6" = "window-move-to-workspace:6"
-"Mod+Shift+7" = "window-move-to-workspace:7"
-"Mod+Shift+8" = "window-move-to-workspace:8"
-"Mod+Shift+9" = "window-move-to-workspace:9"
+"Mod+1" = "workspace-switch 1"
+"Mod+2" = "workspace-switch 2"
+"Mod+3" = "workspace-switch 3"
+"Mod+4" = "workspace-switch 4"
+"Mod+5" = "workspace-switch 5"
+"Mod+6" = "workspace-switch 6"
+"Mod+7" = "workspace-switch 7"
+"Mod+8" = "workspace-switch 8"
+"Mod+9" = "workspace-switch 9"
+"Mod+Shift+1" = "window-move-to-workspace 1"
+"Mod+Shift+2" = "window-move-to-workspace 2"
+"Mod+Shift+3" = "window-move-to-workspace 3"
+"Mod+Shift+4" = "window-move-to-workspace 4"
+"Mod+Shift+5" = "window-move-to-workspace 5"
+"Mod+Shift+6" = "window-move-to-workspace 6"
+"Mod+Shift+7" = "window-move-to-workspace 7"
+"Mod+Shift+8" = "window-move-to-workspace 8"
+"Mod+Shift+9" = "window-move-to-workspace 9"
 
 # Scratchpad
 "Mod+Shift+Space" = "window-move-to-scratchpad"
@@ -176,11 +166,13 @@ follows_mouse = true                          # true | false; focus the window u
 "Mod+Tab" = "scratchpad-focus-next"
 
 # Media and brightness
-"XF86AudioRaiseVolume" = "spawn:wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"
-"XF86AudioLowerVolume" = "spawn:wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
-"XF86AudioMute" = "spawn:wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
-"XF86MonBrightnessDown" = { action = "spawn:noctalia msg brightness-down 10", allow_when_locked = true }  # allow_when_locked = true: works from the lock screen
-"XF86MonBrightnessUp" = { action = "spawn:noctalia msg brightness-up 10", allow_when_locked = true }
+"XF86AudioRaiseVolume" = "spawn wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"
+"XF86AudioLowerVolume" = "spawn wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
+"XF86AudioMute" = "spawn wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
+"XF86MonBrightnessDown" = { action = "spawn noctalia msg brightness-down 10", allow_when_locked = true }  # allow_when_locked = true: works from the lock screen
+"XF86MonBrightnessUp" = { action = "spawn noctalia msg brightness-up 10", allow_when_locked = true }
+"Mod+WheelDown" = "window-focus-left"
+"Mod+WheelUp" = "window-focus-right"
 
 # -----------------------------------------------------------------------------
 # Layout: tiling mode, gaps, struts, and per-mode sizing
@@ -200,9 +192,6 @@ bottom = 0                                    # integer, -65535 to 65535
 default_extent_fraction = 0.5                  # float, 0.1-1.0; initial width of a newly created column
 center_underfull_strip = true                 # true | false; center the strip when it is narrower than the viewport
 center_focused = "never"                      # never | always | on_overflow; when to re-center the focused column
-
-[layout.dwindle]                              # applies when layout.mode = "dwindle"
-new_exits_fullscreen = true                   # true | false; opening a new window in the workspace exits fullscreen
 
 [layout.master]                               # applies when layout.mode = "master"
 position = "left"                             # left | right | center; placement of the master area
@@ -327,3 +316,6 @@ easeOutQuint = [0.23, 1, 0.32, 1]
 zoom = 0.75                                   # float, 0.1-0.75; workspace scale while the overview is open
 scroll_factor_horizontal = 1.0                # float, 0.1-10.0; wheel/gesture multiplier, left and right
 scroll_factor_vertical = 1.0                  # float, 0.1-10.0; wheel/gesture multiplier, up and down
+
+[include.optional]
+files = ["noctalia.toml"]

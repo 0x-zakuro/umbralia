@@ -34,7 +34,7 @@ order = [ "default" ]
         accordion = false
         accordion_direction = "end"
         enabled = true
-        fill = "surface_variant"
+        fill = "surface_container"
         id = "g1"
         members = [ "wallpaper", "control-center" ]
         opacity = 0.85000002384185791
@@ -132,7 +132,7 @@ widget_order = [
     type = "login_box"
 
         [lockscreen_widgets.widget."lockscreen-login-box@WL-1".settings]
-        background_color = "surface_variant"
+        background_color = "surface_container"
         background_opacity = 0.88
         background_radius = 12.0
         center_password_text = false
@@ -159,7 +159,7 @@ widget_order = [
     type = "login_box"
 
         [lockscreen_widgets.widget."lockscreen-login-box@eDP-1".settings]
-        background_color = "surface_variant"
+        background_color = "surface_container"
         background_opacity = 0.0
         background_radius = 12.0
         center_password_text = true
@@ -366,9 +366,6 @@ scale = 2.5
 
 [widget.volume]
 enabled = false
-
-[widget.widget]
-type = "yuuto/arch-updater:widget"
 
 [widget.workspaces]
 active_pill_size = 1.3

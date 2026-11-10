@@ -43,27 +43,8 @@ empty_above = false                           # true | false; keep one empty wor
 focused = "#e46767"                           # hex color of the focused window's border
 
 [appearance]
-prefer_no_csd = true                          # true | false; true uses Umbriel's border-only decoration instead of app CSD
-border_width = 3                              # integer, 0-100 logical px
-outer_border_width = 0                        # integer, 0-100 logical px; additional ring outside border_width
-corner_radius = 10                            # integer, 0-100 logical px
-drag_opacity = 0.65                           # float, 0.0-1.0; window opacity while being dragged
+border_width = 0                              # integer, 0-100 logical px
 
-[appearance.blur]
-enabled = false                               # true | false; master toggle for background blur
-optimized = true                              # true | false; share one cached blur buffer per output instead of per window
-passes = 2                                    # integer, 0-8; number of blur passes
-radius = 10                                   # integer, 0-100; blur radius
-noise = 0.3                                   # float, 0.0-1.0; noise overlay applied to the blurred area
-brightness = 1                                # float, 0.0-2.0
-contrast = 0.9                                # float, 0.0-2.0
-saturation = 1                                # float, 0.0-2.0
-
-[appearance.shadow]
-enabled = false                                # true | false; draw shadows behind non-fullscreen windows
-softness = 10                                 # integer, 0-200; gaussian softness, 0 is a hard edge
-offset_x = 2                                  # integer, -200 to 200 logical px
-offset_y = 2                                  # integer, -200 to 200 logical px
 
 # -----------------------------------------------------------------------------
 # Input: keyboard, touchpad, mouse, tablet, cursor, focus
@@ -95,7 +76,7 @@ enabled = true                                # true | false; false disables all
 theme = "Bibata-Modern-Ice"                   # Xcursor theme name; empty uses the environment/system default
 size = 24                                     # integer, 1-512 logical px
 hardware_cursor = true                        # true | false; false forces the cursor to be software-composited
-follows_focus = false                         # true | false; warp the cursor to a window when it receives focus
+follows_focus = true                          # true | false; warp the cursor to a window when it receives focus
 hide_when_typing = false                      # true | false; hide the cursor while typing
 hide_timeout_ms = 0                           # integer, 0-3600000; idle time before auto-hiding, 0 disables
 

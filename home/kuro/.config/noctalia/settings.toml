@@ -4,9 +4,9 @@ config_version = 14
 order = [ "default" ]
 
     [bar.default]
-    background_opacity = 0.0
+    background_opacity = 0
     capsule = true
-    capsule_opacity = 0.84999998100101948
+    capsule_opacity = 0.75
     capsule_padding = 8.0
     capsule_radius = 5
     capsule_thickness = 0.84999998472630978
@@ -37,7 +37,7 @@ order = [ "default" ]
         fill = "surface_container"
         id = "g1"
         members = [ "wallpaper", "control-center" ]
-        opacity = 0.85000002384185791
+        opacity = 1
         padding = 8.0
         radius = 5.0
 
@@ -133,7 +133,7 @@ widget_order = [
 
         [lockscreen_widgets.widget."lockscreen-login-box@WL-1".settings]
         background_color = "surface_container"
-        background_opacity = 0.88
+        background_opacity = 1.0
         background_radius = 12.0
         center_password_text = false
         input_opacity = 1.0
@@ -227,7 +227,7 @@ widget_order = [
         format = "{:%A %d %B %Y}"
 
 [notification]
-background_opacity = 0.99999997764825821
+background_opacity = 1
 border = false
 history_retention_hours = 168
 max_visible = 3

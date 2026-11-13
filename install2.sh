@@ -9,6 +9,8 @@ CURRENT=0
 START=$SECONDS
 ERR_TMP="$(mktemp)"
 KEEPALIVE=""
+SPINNER=""
+FRAMES=(⠋ ⠙ ⠹ ⠸ ⠼ ⠴ ⠦ ⠧ ⠇ ⠏)
 
 # ── Palette (truecolor; plain text when piped or NO_COLOR is set) ──
 if [[ -t 1 && -z "${NO_COLOR:-}" ]]; then
@@ -29,7 +31,8 @@ fi
 
 # ── Lifecycle ─────────────────────────────────────────────────
 cleanup() {
-  kill $(jobs -p) 2>/dev/null || true
+  [[ -n $SPINNER ]] && kill "$SPINNER" 2>/dev/null || true
+  [[ -n $KEEPALIVE ]] && kill "$KEEPALIVE" 2>/dev/null || true
   [[ $IS_TTY -eq 1 ]] && printf '\033[?25h'
   rm -f "$ERR_TMP"
 }
@@ -40,6 +43,7 @@ trap 'printf "\n\n  %s✦ cancelled%s\n\n" "$WARN" "$RST"; exit 130' INT TERM
 # ── Printers ──────────────────────────────────────────────────
 say()  { printf '    %s✔%s  %s\n' "$OK" "$RST" "$1"; }
 note() { printf '    %s·  %s%s\n' "$MUTED" "$1" "$RST"; }
+warn() { printf '    %s!%s  %s\n' "$WARN" "$RST" "$1"; }
 bail() { printf '\n  %s✘ %s%s\n\n' "$FAIL" "$1" "$RST" >&2; exit 1; }
 
 banner() {
@@ -51,7 +55,7 @@ banner() {
     "╚██████╔╝██║ ╚═╝ ██║██████╔╝██║  ██║██║  ██║███████╗██║██║  ██║"
     " ╚═════╝ ╚═╝     ╚═╝╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝╚═╝╚═╝  ╚═╝"
   )
-  # moonlight gradient, lavender → sky
+  # lavender → sky gradient
   local -a grad=("167 139 250" "150 140 250" "130 150 250" "110 170 250" "96 190 246" "125 211 252")
   local i r g b
   printf '\n'
@@ -71,8 +75,8 @@ progress() {
   local w=40 filled=$(( CURRENT * 40 / TOTAL )) done_bar="" todo_bar="" i
   for ((i = 0; i < filled; i++)); do done_bar+="━"; done
   for ((i = filled; i < w; i++)); do todo_bar+="─"; done
-  printf '   %s%s%s%s%s%s   %s%d/%d%s\n' \
-    "$ACCENT" "$done_bar" "$MUTED" "$todo_bar" "$RST" "" "$TEXT" "$CURRENT" "$TOTAL" "$RST"
+  printf '   %s%s%s%s%s   %s%d/%d%s\n' \
+    "$ACCENT" "$done_bar" "$MUTED" "$todo_bar" "$RST" "$TEXT" "$CURRENT" "$TOTAL" "$RST"
 }
 
 step() {
@@ -82,22 +86,33 @@ step() {
   printf '\n'
 }
 
-# Run a command with a spinner. Stdout is discarded; stderr is kept
-# only in a temp file that is deleted on exit.
+# Runs a command in the foreground (so sudo can prompt if it must) while a
+# print-only spinner animates. stdout is discarded; stderr is kept in a temp
+# file that is shown on failure and deleted on exit.
 task() {
   local label="$1"; shift
-  local -a frames=(⠋ ⠙ ⠹ ⠸ ⠼ ⠴ ⠦ ⠧ ⠇ ⠏)
-  local i=0 t0=$SECONDS rc=0 pid
-  "$@" >/dev/null 2>"$ERR_TMP" &
-  pid=$!
+  local t0=$SECONDS rc=0 i
+
   if [[ $IS_TTY -eq 1 ]]; then
-    while kill -0 "$pid" 2>/dev/null; do
-      printf '%s    %s%s%s  %s%s%s' "$CLR" "$CYAN" "${frames[i]}" "$RST" "$TEXT" "$label" "$RST"
-      i=$(( (i + 1) % ${#frames[@]} ))
-      sleep 0.08
-    done
+    (
+      i=0
+      while :; do
+        printf '%s    %s%s%s  %s%s%s' "$CLR" "$CYAN" "${FRAMES[i]}" "$RST" "$TEXT" "$label" "$RST"
+        i=$(( (i + 1) % ${#FRAMES[@]} ))
+        sleep 0.08
+      done
+    ) &
+    SPINNER=$!
   fi
-  wait "$pid" || rc=$?
+
+  "$@" >/dev/null 2>"$ERR_TMP" || rc=$?
+
+  if [[ -n $SPINNER ]]; then
+    kill "$SPINNER" 2>/dev/null || true
+    wait "$SPINNER" 2>/dev/null || true
+    SPINNER=""
+  fi
+
   if (( rc == 0 )); then
     printf '%s    %s✔%s  %s  %s%ds%s\n' "$CLR" "$OK" "$RST" "$label" "$MUTED" $(( SECONDS - t0 )) "$RST"
   else
@@ -112,17 +127,26 @@ task() {
 # ── Preflight ─────────────────────────────────────────────────
 preflight() {
   printf '\n  %s◆%s %s%sPREFLIGHT%s\n\n' "$ACCENT" "$RST" "$BOLD" "$TEXT" "$RST"
-  if (( EUID == 0 )); then bail "don't run as root — use your normal user"; fi
-  if ! command -v pacman >/dev/null; then bail "pacman not found — this installer is for Arch"; fi
-  if ! curl -fsI --max-time 5 https://archlinux.org >/dev/null; then bail "no internet connection"; fi
+  (( EUID == 0 )) && bail "don't run as root — use your normal user"
+  command -v pacman >/dev/null || bail "pacman not found — this installer is for Arch"
+  curl -fsI --max-time 5 https://archlinux.org >/dev/null || bail "no internet connection"
   say "arch linux detected"
   say "network online"
+
+  if [[ -e /var/lib/pacman/db.lck ]]; then
+    if pgrep -x pacman >/dev/null || pgrep -x yay >/dev/null; then
+      bail "another pacman/yay is running — close it and retry"
+    fi
+    warn "stale pacman lock found — removing"
+    sudo rm -f /var/lib/pacman/db.lck
+  fi
 }
 
 unlock_sudo() {
   note "unlocking sudo once — it stays open for the whole run"
   sudo -v
-  ( while true; do sudo -n true; sleep 50; done ) >/dev/null 2>&1 &
+  # renew the timestamp quietly; -n means it never prompts from here
+  ( while true; do sudo -n -v 2>/dev/null || true; sleep 30; done ) >/dev/null 2>&1 &
   KEEPALIVE=$!
   say "sudo unlocked"
 }
@@ -183,14 +207,14 @@ zsh_default() {
 # ── Steps ─────────────────────────────────────────────────────
 step_dotfiles() {
   step "Dotfiles → home"
-  task "copying ~/.config"  cp -r "$DOTFILES_DIR/home/kuro/.config/." "$HOME/.config/"
-  task "copying ~/.local"   cp -r "$DOTFILES_DIR/home/kuro/.local/."  "$HOME/.local/"
+  task "copying ~/.config"     cp -r "$DOTFILES_DIR/home/kuro/.config/." "$HOME/.config/"
+  task "copying ~/.local"      cp -r "$DOTFILES_DIR/home/kuro/.local/."  "$HOME/.local/"
   task "rebuilding font cache" refresh_fonts
 }
 
 step_system() {
   step "System config"
-  task "merging into /etc" etc_config
+  task "merging into /etc"                 etc_config
   task "NVIDIA idle power rule (hybrid GPU)" nvidia_pm
 }
 
@@ -212,6 +236,7 @@ step_yay() {
   if command -v yay >/dev/null; then
     note "yay already installed"
   else
+    sudo -v   # re-arm the timestamp right before makepkg needs it
     task "building yay" build_yay
   fi
 }
@@ -219,9 +244,10 @@ step_yay() {
 step_aur() {
   step "AUR packages"
   local -a aur=(
-    activate-linux flow-browser-bin localsend-bin mpv-uosc-git
-    noctalia-greeter qt6ct-kde umbriel-git
+    deckcraft-bin flow-browser-bin gridcraft-bin localsend-bin mpv-uosc-git
+    noctalia-greeter qt6ct-kde rayburst-bin umbriel-git wordcraft-bin
   )
+  sudo -v
   task "installing ${#aur[@]} AUR packages" yay -S --needed --noconfirm "${aur[@]}"
 }
 

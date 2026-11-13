@@ -6,7 +6,7 @@
 # General session behavior
 # -----------------------------------------------------------------------------
 [general]
-autostart = ["noctalia", "sh -c 'sleep 1 && noctalia msg session lock'"]  # list of commands run once when the session starts
+autostart = ["noctalia", "sh -c 'sleep 1 && noctalia msg session lock'", , "activate-linux"]  # list of commands run once when the session starts
 xwayland = false                              # enables Xwayland app support; requires xwayland-satellite; restart to apply
 show_cheatsheet = false                       # true | false; show the keybind overlay on startup
 focus_on_activate = false                     # true | false; allow apps to request focus via activation protocol

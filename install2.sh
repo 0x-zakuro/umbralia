@@ -214,7 +214,7 @@ step_dotfiles() {
 
 step_system() {
   step "System config"
-  task "merging into /etc"                 etc_config
+  task "merging into /etc"                   etc_config
   task "NVIDIA idle power rule (hybrid GPU)" nvidia_pm
 }
 
@@ -238,11 +238,14 @@ step_yay() {
   else
     sudo -v   # re-arm the timestamp right before makepkg needs it
     task "building yay" build_yay
+    hash -r   # forget cached PATH lookups so the new binary is seen
+    command -v yay >/dev/null || bail "yay built but not on PATH — check 'pacman -Ql yay'"
   fi
 }
 
 step_aur() {
   step "AUR packages"
+  hash -r
   local -a aur=(
     deckcraft-bin flow-browser-bin gridcraft-bin localsend-bin mpv-uosc-git
     noctalia-greeter qt6ct-kde rayburst-bin umbriel-git wordcraft-bin

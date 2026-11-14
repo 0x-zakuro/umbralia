@@ -316,7 +316,7 @@ step_yay() {
 step_aur() {
   ui_step "AUR packages"
   local -a aur=(
-    deckcraft-bin flow-browser-bin gridcraft-bin localsend-bin mpv-uosc-git
+    deckcraft-bin flow-browser-bin gridcraft-bin localsend-bin mpv-uosc
     noctalia-greeter qt6ct-kde rayburst-bin umbriel-git wordcraft-bin
   )
   hash -r

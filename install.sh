@@ -135,7 +135,7 @@ fi
 # ─────────────────────────────────────────────────────────────
 step 5 9 "AUR packages"
 yay -S --needed --noconfirm \
-  deckcraft-bin flow-browser-bin gridcraft-bin localsend-bin mpv-uosc-git noctalia-greeter qt6ct-kde rayburst-bin umbriel-git wordcraft-bin
+  deckcraft-bin flow-browser-bin gridcraft-bin localsend-bin mpv-uosc noctalia-greeter qt6ct-kde rayburst-bin umbriel-git wordcraft-bin
 ok "AUR packages installed"
 
 # ─────────────────────────────────────────────────────────────

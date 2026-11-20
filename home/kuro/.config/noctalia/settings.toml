@@ -326,31 +326,15 @@ wallpaper_scheme = "dysfunctional"
     community_ids = [ "zed", "yazi", "obsidian" ]
 
 [wallpaper]
-directory = "/home/kuro/.config/wallpaper/"
-directory_dark = "/home/kuro/.config/wallpaper/dark_wallpaper/"
-directory_light = "/home/kuro/.config/wallpaper/light_wallpaper/"
+directory = "/home/kuro/.config/wallpaper/wallpaper/"
+directory_dark = "/home/kuro/.config/wallpaper/wallpaper/"
+directory_light = "/home/kuro/.config/wallpaper/wallpaper/"
 transition = [ "wipe" ]
 transition_on_startup = true
 
     [wallpaper.automation]
     enabled = true
     interval_seconds = 3600
-
-    [wallpaper.default]
-    path = "/home/kuro/.config/wallpaper/homescreen.jpg"
-
-    [wallpaper.last]
-    path = "/home/kuro/.config/wallpaper/homescreen.jpg"
-
-    [wallpaper.monitors.WL-1]
-    path = "/home/kuro/.config/wallpaper/dark_wallpaper/D-5.jpg"
-
-    [wallpaper.monitors.eDP-1]
-    path = "/home/kuro/.config/wallpaper/light_wallpaper/D-5.jpg"
-
-    [[wallpaper.favorite]]
-    path = "/home/kuro/.config/wallpaper/light_wallpaper/D-5.jpg"
-    theme_mode = "auto"
 
 [widget.bluetooth]
 enabled = false

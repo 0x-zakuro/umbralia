@@ -326,9 +326,9 @@ wallpaper_scheme = "dysfunctional"
     community_ids = [ "zed", "yazi", "obsidian" ]
 
 [wallpaper]
-directory = "/home/kuro/.config/wallpaper/wallpaper/"
-directory_dark = "/home/kuro/.config/wallpaper/wallpaper/"
-directory_light = "/home/kuro/.config/wallpaper/wallpaper/"
+directory = "/home/kuro/.config/wallpaper/"
+directory_dark = "/home/kuro/.config/wallpaper/"
+directory_light = "/home/kuro/.config/wallpaper/"
 transition = [ "wipe" ]
 transition_on_startup = true
 

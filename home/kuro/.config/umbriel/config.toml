@@ -103,6 +103,8 @@ follows_mouse = true                          # true | false; focus the window u
 "Mod+F" = "window-toggle-fullscreen"
 "Mod+O" = { action = "overview-toggle", repeat = false }  # repeat = false: holding the key does not repeat the action
 "Mod+R" = "window-cycle-primary-extent"       # cycles through the fractions in layout.extent_presets
+"Mod+Z" = "spawn:foot -e /home/kuro/.config/scripts/layout-switcher.sh"
+"Mod+X" = { action = "spawn:noctalia msg wallpaper-random" }
 
 # Focus movement: arrow keys and vim-style (H/J/K/L) equivalents
 "Mod+Left" = "window-focus-left"

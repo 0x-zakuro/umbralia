@@ -1,28 +1,32 @@
-config_version = 14
+[accessibility]
+ui_scale = 1.0500000081956387
+
+[audio]
+colorize_icons = true
 
 [bar]
 order = [ "default" ]
 
     [bar.default]
-    background_opacity = 1
+    background_opacity = 0.99999997764825821
     capsule = true
-    capsule_opacity = 0.75
-    capsule_padding = 8.0
-    capsule_radius = 5
-    capsule_thickness = 0.84999998472630978
+    capsule_opacity = 0.0
+    capsule_padding = 5.0
+    capsule_radius = 8
+    capsule_thickness = 0.79999998584389687
     center = [ "active_window" ]
     concave_edge_corners = false
-    end = [ "media", "tray", "clipboard", "battery", "group:g1" ]
+    end = [ "group:g1" ]
     font_family = "Liberation Sans"
     font_weight = 700
     margin_ends = 0
-    padding = 20
-    radius = 8
+    padding = 15
+    radius = 0
     scale = 1.1000000089406967
     shadow = false
-    start = [ "clock", "workspaces" ]
+    start = [ "group:g2" ]
     thickness = 40
-    widget_spacing = 10
+    widget_spacing = 20
 
         [bar.default.dead_zone.actions]
         left = "wallpaper-random"
@@ -33,18 +37,34 @@ order = [ "default" ]
         [[bar.default.capsule_group]]
         accordion = false
         accordion_direction = "end"
+        border_width = 1.0
         enabled = true
         fill = "surface_container"
         id = "g1"
-        members = [ "wallpaper", "control-center" ]
-        opacity = 1
-        padding = 8.0
-        radius = 5.0
+        members = [ "media", "tray", "clipboard", "battery", "wallpaper", "control-center" ]
+        opacity = 0.0
+        padding = 5.0
+        radius = 8.0
+
+        [[bar.default.capsule_group]]
+        accordion = false
+        accordion_direction = "end"
+        border_width = 1.0
+        enabled = true
+        fill = "surface_container"
+        id = "g2"
+        members = [ "clock", "workspaces" ]
+        opacity = 0.0
+        padding = 5.0
+        radius = 8.0
+
+[battery]
+warning_threshold = 20
 
 [control_center]
 show_shortcut_labels = false
 sidebar = "full"
-sidebar_section = "full"
+sidebar_section = "compact"
 width = 600
 
     [[control_center.shortcuts]]
@@ -66,9 +86,9 @@ width = 600
     type = "notification"
 
 [desktop_widgets]
-enabled = false
+enabled = true
 schema_version = 2
-widget_order = [ "desktop-widget-0000000000000002" ]
+widget_order = [ "desktop-widget-0000000000000003" ]
 
     [desktop_widgets.grid]
     cell_size = 16
@@ -91,6 +111,17 @@ widget_order = [ "desktop-widget-0000000000000002" ]
         glyph = "heart"
         variant = "default"
 
+    [desktop_widgets.widget.desktop-widget-0000000000000003]
+    box_height = 0.0
+    box_width = 0.0
+    cx = 227.640625
+    cy = 187.06640625
+    output = "eDP-1"
+    placement_height = 1152.0
+    placement_width = 2048.0
+    rotation = 0.0
+    type = "clock"
+
 [dock]
 position = "top"
 
@@ -98,11 +129,29 @@ position = "top"
 theme_mode_changed = "pkill --signal $([ \"$NOCTALIA_THEME_MODE\" = dark ] && echo USR1 || echo USR2) -f '^foot$'"
 
 [idle]
+behavior_order = [ "lock", "screen-off", "lock-and-suspend" ]
 pre_action_fade_seconds = 30
+
+    [idle.behavior.lock]
+    action = "lock"
+    enabled = true
+    timeout = 600.0
+
+    [idle.behavior.lock-and-suspend]
+    action = "lock_and_suspend"
+    enabled = true
+    timeout = 1200.0
+
+    [idle.behavior.screen-off]
+    action = "screen_off"
+    enabled = true
+    timeout = 660.0
 
 [lockscreen]
 blur_intensity = 0.29999999329447746
 blurred_desktop = true
+fingerprint = false
+transition = [ "melt", "wipe" ]
 
 [lockscreen_widgets]
 enabled = true
@@ -143,6 +192,8 @@ widget_order = [
         show_keyboard_layout = true
         show_login_button = true
         show_media = true
+        show_media_controls = true
+        show_password_reveal = true
         show_session_buttons = true
         show_unlock_hint = true
         show_weather = true
@@ -150,7 +201,7 @@ widget_order = [
     [lockscreen_widgets.widget."lockscreen-login-box@eDP-1"]
     box_height = 70.0
     box_width = 264.0
-    cx = 1024.0
+    cx = 1040.0
     cy = 1000.0
     output = "eDP-1"
     placement_height = 1152.0
@@ -170,6 +221,8 @@ widget_order = [
         show_keyboard_layout = true
         show_login_button = false
         show_media = true
+        show_media_controls = true
+        show_password_reveal = true
         show_session_buttons = true
         show_unlock_hint = false
         show_weather = true
@@ -215,7 +268,7 @@ widget_order = [
     box_height = 24.0
     box_width = 280.0
     cx = 1024.0
-    cy = 221.86669921875
+    cy = 221.86671447753906
     output = "eDP-1"
     placement_height = 1152.0
     placement_width = 2048.0
@@ -236,6 +289,7 @@ offset_y = 6
 scale = 0.90000000596046448
 
 [osd]
+background_opacity = 0.99999997764825821
 border = false
 
 [plugins]
@@ -243,33 +297,43 @@ enabled = []
 
 [shell]
 avatar_path = "/home/kuro/.config/wallpaper/avatar.jpg"
+button_borders = false
+card_borders = false
 corner_radius_scale = 0.90000001341104507
 external_ip_enabled = true
-font_family = "Liberation Sans"
+font_family = "Adwaita Sans"
+input_borders = false
 password_style = "random"
 polkit_agent = true
-settings_window_translucent = false
+popup_borders = false
 screen_time_enabled = true
+settings_window_translucent = false
+show_close_buttons = false
 
     [shell.greeter_sync]
     auto_sync = true
 
     [shell.launcher]
+    app_grid = true
     auto_paste = "ctrl_v"
     categories = false
-    compact = true
+    compact = false
     fetch_exchange_rates = false
+    layout = "simple"
     show_app_origin_indicator = false
 
         [shell.launcher.providers.calculator]
         global = false
 
     [shell.panel]
+    control_center_placement = "floating"
     control_center_position = "auto"
     open_near_click_control_center = true
+    open_near_click_session = true
+    session_placement = "floating"
     transparency_mode = "soft"
     wallpaper_placement = "floating"
-    wallpaper_position = "bottom_center"
+    wallpaper_position = "center"
 
     [shell.screenshot]
     annotate = true
@@ -314,6 +378,9 @@ screen_time_enabled = true
         shortcut = "5"
         variant = "destructive"
 
+    [shell.shadow]
+    direction = "down_right"
+
 [theme]
 community_palette = "Aura"
 custom_palette = "oxocarbon"
@@ -322,7 +389,7 @@ source = "custom"
 wallpaper_scheme = "dysfunctional"
 
     [theme.templates]
-    builtin_ids = [ "foot", "gtk3", "gtk4", "umbriel" ]
+    builtin_ids = [ "foot", "gtk3", "gtk4", "luciole", "umbriel" ]
     community_ids = [ "zed", "yazi", "obsidian" ]
 
 [wallpaper]
@@ -335,6 +402,15 @@ transition_on_startup = true
     [wallpaper.automation]
     enabled = true
     interval_seconds = 3600
+
+    [wallpaper.default]
+    path = "/home/kuro/.config/wallpaper/rocket-launch_light.png"
+
+    [wallpaper.last]
+    path = "/home/kuro/.config/wallpaper/rocket-launch_light.png"
+
+    [wallpaper.monitors.eDP-1]
+    path = "/home/kuro/.config/wallpaper/rocket-launch_light.png"
 
 [widget.bluetooth]
 enabled = false
@@ -353,7 +429,10 @@ enabled = false
 
 [widget.workspaces]
 active_pill_size = 1.3
-hide_when_empty = true
+capsule_foreground = "primary"
+empty_color = "tertiary"
+hide_when_empty = false
 inactive_pill_size = 0.65000000000000002
-scale = 1.2
-style = "minimal"
+scale = 1.4000000000000001
+show_tooltip = true
+style = "regular"

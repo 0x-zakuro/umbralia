@@ -207,11 +207,6 @@ center_focused = "never"                      # never | always | on_overflow: wh
 [[window_rule]]
 blur = true
 blur_optimized = true                         # false uses a per-window blur pass instead of the shared cached one
-
-# Terminal
-[[window_rule]]
-match.app_id = "^foot$"
-default_floating = true
 default_floating_size_px = { width = 900, height = 600 }
 
 # Noctalia shell windows

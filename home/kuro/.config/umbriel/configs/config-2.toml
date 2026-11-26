@@ -209,6 +209,7 @@ center_focused = "never"          # never | always | on_overflow: when to re-cen
 blur = true
 blur_optimized = true             # true uses the shared cached blur pass; false uses a per-window pass
 default_floating_size_px = { width = 900, height = 600 }
+default_position = { x = 0, y = 0, anchor = "center" }
 
 # Noctalia shell windows
 [[window_rule]]
@@ -235,14 +236,14 @@ default_position = { x = 0, y = 0, anchor = "bottom_right" }
 default_focused = false
 default_pinned = true
 
-# Window opacity: 0.80 for both focused and unfocused windows (1 = opaque)
+# Window opacity: 0.85 for both focused and unfocused windows (1 = opaque)
 [[window_rule]]
 match.is_focused = false
-opacity = 0.80
+opacity = 0.85
 
 [[window_rule]]
 match.is_focused = true
-opacity = 0.80
+opacity = 0.85
 
 
 # -----------------------------------------------------------------------------

@@ -217,6 +217,7 @@ new_becomes_master = false        # Make a new window the master instead of join
 blur = false
 blur_optimized = false            # false uses a per-window blur pass instead of the shared cached one
 default_floating_size_px = { width = 900, height = 600 }
+default_position = { x = 0, y = 0, anchor = "center" }
 
 # Noctalia shell windows
 [[window_rule]]

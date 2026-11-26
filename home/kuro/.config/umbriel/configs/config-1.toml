@@ -8,89 +8,90 @@
 # General
 # -----------------------------------------------------------------------------
 [general]
-autostart = ["noctalia", "sh -c 'sleep 2 && noctalia msg session lock'", "activate-linux"]  # Commands run once at session start, in order
-xwayland = false                              # Enable Xwayland support (requires xwayland-satellite; restart to apply)
-show_cheatsheet = false                       # Show the keybind cheatsheet on startup
-focus_on_activate = false                     # Let apps request focus through the activation protocol
-honor_restored_maximize = false               # Restore saved maximized state when the session restores
+# Commands run once at session start, in order: shell, then lock after 1s, then activate-linux
+autostart = ["noctalia", "sh -c 'sleep 1 && noctalia msg session lock'", "activate-linux"]
+xwayland = false                  # Xwayland support; needs xwayland-satellite. Restart to apply
+show_cheatsheet = false           # Show the keybind cheatsheet on startup
+focus_on_activate = false         # Let apps request focus via the activation protocol
+honor_restored_maximize = false   # Restore saved maximized state on session restore
 
 
 # -----------------------------------------------------------------------------
 # Includes (missing files are skipped silently)
 # -----------------------------------------------------------------------------
 [include]
-files = []                                    # Always-loaded config fragments
+files = []                        # Always-loaded config fragments
 
 [include.optional]
-files = ["noctalia.toml"]                     # Fragments loaded only when present
+files = ["noctalia.toml"]         # Loaded only if present
 
 
 # -----------------------------------------------------------------------------
 # Outputs
 # -----------------------------------------------------------------------------
-[output.eDP-1]                                # Section name is the connector name (see `umbriel outputs`)
-mode = "2560x1440@144"                        # "WIDTHxHEIGHT" or "WIDTHxHEIGHT@HZ"
-scale = 1.25                                  # Logical size = physical mode size / scale
-vrr = "fullscreen"                            # disabled | always | fullscreen
-hdr = "auto"                                  # off | on | auto | fullscreen
-workspaces = 5                                # Fixed workspace slots on this output (omit for dynamic)
-workspace_axis = "horizontal"                 # horizontal | vertical: layout and switch direction
+[output.eDP-1]                    # Section name is the connector name (see `umbriel outputs`)
+mode = "2560x1440@144"            # "WIDTHxHEIGHT" or "WIDTHxHEIGHT@HZ"
+scale = 1.25                      # Logical size = physical size / scale
+vrr = "fullscreen"                # disabled | always | fullscreen
+hdr = "auto"                      # off | on | auto | fullscreen
+workspaces = 5                    # Fixed workspace slots on this output (omit for dynamic)
+workspace_axis = "horizontal"     # horizontal | vertical: layout and switch direction
 
 
 # -----------------------------------------------------------------------------
 # Workspaces
 # -----------------------------------------------------------------------------
 [workspaces]
-back_and_forth = false                        # Switching to the active workspace jumps to the previous one
-empty_above = false                           # Keep one empty workspace above the highest occupied index
+back_and_forth = false            # Switching to the active workspace jumps to the previous one
+empty_above = false               # Keep one empty workspace above the highest occupied index
 
 
 # -----------------------------------------------------------------------------
 # Appearance
 # -----------------------------------------------------------------------------
 [appearance]
-border_width = 0                              # Window border width in logical px (0-100)
+border_width = 0                  # Window border width in logical px (0-100)
 
 [colors.border]
-focused = "#e46767"                           # Border color of the focused window
+focused = "#e46767"               # Border color of the focused window
 
 
 # -----------------------------------------------------------------------------
 # Input
 # -----------------------------------------------------------------------------
 [input]
-middle_click_paste = true                     # Paste the primary selection on middle click
-window_drag_toggle = "none"                   # none | floating | pinned: state a dragged window switches to
+middle_click_paste = true         # Paste primary selection on middle click
+window_drag_toggle = "none"       # none | floating | pinned: state a dragged window switches to
 
 [input.keyboard]
-layout = ""                                   # XKB layout(s), e.g. "us,de". Empty uses the system default
-variant = ""                                  # XKB variant per layout, e.g. ",nodeadkeys". Empty uses the default
-options = ""                                  # XKB options, e.g. "grp:alt_shift_toggle"
-repeat_rate = 25                              # Key repeats per second once repeating starts (0-1000)
-repeat_delay = 600                            # Delay before a held key starts repeating, in ms (0-10000)
-numlock_toggle = true                         # Force numlock on when a keyboard connects
-track_layout = "global"                       # global | window: scope of the active layout selection
+layout = ""                       # XKB layout(s), e.g. "us,de". Empty = system default
+variant = ""                      # XKB variant per layout, e.g. ",nodeadkeys". Empty = default
+options = ""                      # XKB options, e.g. "grp:alt_shift_toggle"
+repeat_rate = 25                  # Key repeats per second once repeating starts (0-1000)
+repeat_delay = 600                # Delay before a held key repeats, in ms (0-10000)
+numlock_toggle = true             # Force numlock on when a keyboard connects
+track_layout = "global"           # global | window: scope of the active layout selection
 
 [input.touchpad]
-tap = true                                    # Tap to click
+tap = true                        # Tap to click
 
 [input.mouse]
-sensitivity = 0.0                             # Pointer acceleration (-1.0 to 1.0)
-scroll_wheel_step = 60                        # Logical px scrolled per wheel notch (1-1000)
+sensitivity = 0.0                 # Pointer acceleration (-1.0 to 1.0)
+scroll_wheel_step = 60            # Logical px scrolled per wheel notch (1-1000)
 
 [input.tablet]
-enabled = true                                # false disables all tablet tools and pads
+enabled = true                    # false disables all tablet tools and pads
 
 [input.cursor]
-theme = "Bibata-Modern-Ice"                   # Xcursor theme. Empty uses the system default
-size = 24                                     # Cursor size in logical px (1-512)
-hardware_cursor = true                        # false forces a software-composited cursor
-follows_focus = true                          # Warp the cursor to a window when it gains focus
-hide_when_typing = false                      # Hide the cursor while typing
-hide_timeout_ms = 0                           # Hide after this much idle time in ms (0 disables)
+theme = "Bibata-Modern-Ice"       # Xcursor theme. Empty = system default
+size = 24                         # Cursor size in logical px (1-512)
+hardware_cursor = true            # false forces a software-composited cursor
+follows_focus = true              # Warp the cursor to a window when it gains focus
+hide_when_typing = false          # Hide the cursor while typing
+hide_timeout_ms = 0               # Hide after this much idle time in ms (0 disables)
 
 [input.focus]
-follows_mouse = true                          # Focus the window under the pointer
+follows_mouse = true              # Focus the window under the pointer
 
 
 # -----------------------------------------------------------------------------
@@ -99,30 +100,40 @@ follows_mouse = true                          # Focus the window under the point
 # -----------------------------------------------------------------------------
 [keybinds]
 
-# Screenshots, session, and overlays
-"Mod+S"         = { action = "spawn:noctalia msg screenshot-fullscreen" }
-"Mod+Shift+S"   = { action = "spawn:noctalia msg screenshot-region" }
-"Mod+Shift+L"   = { action = "spawn:noctalia msg session lock" }
-"Mod+Escape"    = "session-quit"
-"Mod+Return"    = "cheatsheet-toggle"
+# Mod alone opens the launcher
+"Mod" = "spawn:noctalia msg panel-toggle launcher"
 
-# Launching and window management
-"Mod+A"         = "spawn:foot"
-"Mod"           = "spawn:noctalia msg panel-toggle launcher"   # Mod alone, no other key
-"Mod+Q"         = "window-close"
-"Mod+T"         = "window-toggle-floating"
-"Mod+F"         = "window-toggle-fullscreen"
-"Mod+O"         = { action = "overview-toggle", repeat = false }
-"Mod+R"         = "window-cycle-primary-extent"               # Cycles layout.extent_presets
-"Mod+Z"         = "spawn:foot -e /home/kuro/.config/scripts/noctalia-switcher.sh"
-"Mod+X"         = "spawn:foot -e /home/kuro/.config/scripts/umbriel-switcher.sh"
-"Mod+C"         = { action = "spawn:noctalia msg wallpaper-random" }
+# Top row: window management
+"Mod+Q" = "window-close"
+"Mod+W" = "window-toggle-floating"
+"Mod+E" = "window-toggle-fullscreen"
+"Mod+R" = "window-cycle-primary-extent"          # Cycles layout.extent_presets
+
+# Home row: launchers
+"Mod+A" = "spawn:foot"
+"Mod+S" = "spawn:zeditor"
+"Mod+D" = "spawn:flow-browser"
+"Mod+F" = "spawn:luciole"
+
+# Bottom row: scripts and wallpaper
+"Mod+Z" = "spawn:foot -e /home/kuro/.config/scripts/noctalia-switcher.sh"
+"Mod+X" = "spawn:foot -e /home/kuro/.config/scripts/umbriel-switcher.sh"
+"Mod+C"       = { action = "spawn:noctalia msg wallpaper-random" }
+"Mod+Shift+C" = { action = "spawn:noctalia msg panel-toggle wallpaper" }
+
+# Special keys: cheatsheet, session, overview, screenshots, lock
+"Mod+Return"  = "cheatsheet-toggle"
+"Mod+Escape"  = "session-quit"
+"Mod+O"       = { action = "overview-toggle", repeat = false }
+"Mod+P"       = { action = "spawn:noctalia msg screenshot-fullscreen" }
+"Mod+Shift+P" = { action = "spawn:noctalia msg screenshot-region" }
+"Mod+Shift+L" = { action = "spawn:noctalia msg session lock" }
 
 # Focus movement
-"Mod+Left"      = "window-focus-left"
-"Mod+Down"      = "window-focus-down"
-"Mod+Up"        = "window-focus-up"
-"Mod+Right"     = "window-focus-right"
+"Mod+Left"  = "window-focus-left"
+"Mod+Down"  = "window-focus-down"
+"Mod+Up"    = "window-focus-up"
+"Mod+Right" = "window-focus-right"
 
 # Moving and resizing windows and columns
 "Mod+Shift+Left"  = "column-move-left"
@@ -135,24 +146,24 @@ follows_mouse = true                          # Focus the window under the point
 "Mod+Ctrl+Down"   = "window-modify-height-down:0.05"
 
 # Workspaces: Mod+N switches, Mod+Shift+N moves the focused window
-"Mod+1"         = "workspace-switch:1"
-"Mod+2"         = "workspace-switch:2"
-"Mod+3"         = "workspace-switch:3"
-"Mod+4"         = "workspace-switch:4"
-"Mod+5"         = "workspace-switch:5"
-"Mod+6"         = "workspace-switch:6"
-"Mod+7"         = "workspace-switch:7"
-"Mod+8"         = "workspace-switch:8"
-"Mod+9"         = "workspace-switch:9"
-"Mod+Shift+1"   = "window-move-to-workspace:1"
-"Mod+Shift+2"   = "window-move-to-workspace:2"
-"Mod+Shift+3"   = "window-move-to-workspace:3"
-"Mod+Shift+4"   = "window-move-to-workspace:4"
-"Mod+Shift+5"   = "window-move-to-workspace:5"
-"Mod+Shift+6"   = "window-move-to-workspace:6"
-"Mod+Shift+7"   = "window-move-to-workspace:7"
-"Mod+Shift+8"   = "window-move-to-workspace:8"
-"Mod+Shift+9"   = "window-move-to-workspace:9"
+"Mod+1" = "workspace-switch:1"
+"Mod+2" = "workspace-switch:2"
+"Mod+3" = "workspace-switch:3"
+"Mod+4" = "workspace-switch:4"
+"Mod+5" = "workspace-switch:5"
+"Mod+6" = "workspace-switch:6"
+"Mod+7" = "workspace-switch:7"
+"Mod+8" = "workspace-switch:8"
+"Mod+9" = "workspace-switch:9"
+"Mod+Shift+1" = "window-move-to-workspace:1"
+"Mod+Shift+2" = "window-move-to-workspace:2"
+"Mod+Shift+3" = "window-move-to-workspace:3"
+"Mod+Shift+4" = "window-move-to-workspace:4"
+"Mod+Shift+5" = "window-move-to-workspace:5"
+"Mod+Shift+6" = "window-move-to-workspace:6"
+"Mod+Shift+7" = "window-move-to-workspace:7"
+"Mod+Shift+8" = "window-move-to-workspace:8"
+"Mod+Shift+9" = "window-move-to-workspace:9"
 
 # Scratchpad
 "Mod+Shift+Space" = "window-move-to-scratchpad"
@@ -160,7 +171,7 @@ follows_mouse = true                          # Focus the window under the point
 "Mod+Ctrl+Space"  = "window-restore-from-scratchpad"
 "Mod+Tab"         = "scratchpad-focus-next"
 
-# Audio, brightness, and wheel navigation
+# Volume, brightness (work when locked), and wheel-based focus
 "XF86AudioRaiseVolume"  = "spawn:wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"
 "XF86AudioLowerVolume"  = "spawn:wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
 "XF86AudioMute"         = "spawn:wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
@@ -174,26 +185,26 @@ follows_mouse = true                          # Focus the window under the point
 # Layout
 # -----------------------------------------------------------------------------
 [layout]
-mode = "dwindle"                              # scrolling | dwindle | master: default, overridable per workspace
-gap = 20                                      # Gap between tiles in logical px (0-500)
-extent_presets = [0.25, 0.5, 0.75]            # Width/height fractions cycled by window-cycle-primary-extent
+mode = "dwindle"                  # scrolling | dwindle | master. Default, overridable per workspace
+gap = 20                          # Gap between tiles in logical px (0-500)
+extent_presets = [0.25, 0.5, 0.75]  # Width/height fractions cycled by window-cycle-primary-extent
 
 [layout.struts]
-left = 0                                      # Reserved px beyond panel exclusive zones (-65535 to 65535)
-right = 0                                     # Negative values expand the tiled area past this edge
+left = 0                          # Reserved px beyond panel exclusive zones (-65535 to 65535)
+right = 0                         # Negative values expand the tiled area past this edge
 top = 0
 bottom = 0
 
-[layout.scrolling]                            # Used when layout.mode = "scrolling"
-default_extent_fraction = 0.5                 # Initial width of a new column (0.1-1.0)
-center_underfull_strip = true                 # Center the strip when it is narrower than the viewport
-center_focused = "never"                      # never | always | on_overflow: when to re-center the focused column
+[layout.scrolling]                # Used when layout.mode = "scrolling"
+default_extent_fraction = 0.5     # Initial width of a new column (0.1-1.0)
+center_underfull_strip = true     # Center the strip when narrower than the viewport
+center_focused = "never"          # never | always | on_overflow: when to re-center the focused column
 
-[layout.master]                               # Used when layout.mode = "master"
-position = "left"                             # left | right | center: placement of the master area
-default_width_fraction = 0.55                 # Width of the master area (0.1-0.9)
-new_on_top = true                             # Insert new windows at the top of the stack
-new_becomes_master = false                    # Make a new window the master instead of joining the stack
+[layout.master]                   # Used when layout.mode = "master"
+position = "left"                 # left | right | center: placement of the master area
+default_width_fraction = 0.55     # Width of the master area (0.1-0.9)
+new_on_top = true                 # Insert new windows at the top of the stack
+new_becomes_master = false        # Make a new window the master instead of joining the stack
 
 
 # -----------------------------------------------------------------------------
@@ -204,7 +215,8 @@ new_becomes_master = false                    # Make a new window the master ins
 # Applies to every window
 [[window_rule]]
 blur = false
-blur_optimized = false                        # false uses a per-window blur pass instead of the shared cached one
+blur_optimized = false            # false uses a per-window blur pass instead of the shared cached one
+default_floating_size_px = { width = 900, height = 600 }
 
 # Noctalia shell windows
 [[window_rule]]
@@ -231,7 +243,7 @@ default_position = { x = 0, y = 0, anchor = "bottom_right" }
 default_focused = false
 default_pinned = true
 
-# Opacity (1 = fully opaque; no dimming on unfocused windows)
+# Opacity: 1 = fully opaque, so unfocused windows are not dimmed
 [[window_rule]]
 match.is_focused = false
 opacity = 1
@@ -248,8 +260,8 @@ opacity = 1
 [[layer_rule]]
 match.namespace = "^noctalia-(bar-[^\"]+|notification|dock|panel|attached-panel|osd|desktop-widget-[^\"]*)$"
 blur = true
-blur_ignore_alpha = 0.5                       # Blur only pixels with alpha at or above this value (0.0-1.0)
-blur_popups = true                            # Also blur behind popups from this surface
+blur_ignore_alpha = 0.5           # Blur only pixels with alpha at or above this value (0.0-1.0)
+blur_popups = true                # Also blur behind popups from this surface
 blur_optimized = false
 
 
@@ -262,53 +274,53 @@ enabled = true
 duration_ms = 380
 curve = "smooth"
 
-[animation.windows_in]                        # Window open: pop-in with a soft settle
+[animation.windows_in]            # Window open: pop-in with a soft settle
 enabled = true
 duration_ms = 300
 curve = "smooth"
 style = "popin"
 scale = 0.93
 
-[animation.windows_out]                       # Window close: slide down and fade
+[animation.windows_out]           # Window close: slide down and fade
 enabled = true
 duration_ms = 260
 curve = "smooth"
 style = "slide"
 
-[animation.windows_move]                      # Tiling reflow
+[animation.windows_move]          # Tiling reflow
 enabled = true
 duration_ms = 360
 curve = "smooth"
 
-[animation.workspaces]                        # Workspace switch: horizontal slide with edge rebound
+[animation.workspaces]            # Workspace switch: horizontal slide with edge rebound
 enabled = true
 duration_ms = 430
 curve = "smooth"
 
-[animation.overview]                          # Workspace overview zoom
+[animation.overview]              # Workspace overview zoom
 enabled = true
 duration_ms = 380
 curve = "smooth"
 workspace_curve = "smooth"
 
-[animation.layers]                            # Launcher and notification pop-in
+[animation.layers]                # Launcher and notification pop-in
 enabled = true
 duration_ms = 270
 curve = "smooth"
 
-[animation.border]                            # Focus border transition
+[animation.border]                # Focus border transition
 enabled = true
 duration_ms = 340
 curve = "smooth"
 
 [animation.beziers]
-smooth = [0.13, 0.95, 0.22, 1.015]            # Fast launch with a slight overshoot on settle
+smooth = [0.13, 0.95, 0.22, 1.015]  # Fast launch with a slight overshoot on settle
 
 
 # -----------------------------------------------------------------------------
 # Overview
 # -----------------------------------------------------------------------------
 [overview]
-zoom = 0.75                                   # Workspace scale while the overview is open (0.1-0.75)
-scroll_factor_horizontal = 1.0                # Wheel and gesture multiplier, horizontal (0.1-10.0)
-scroll_factor_vertical = 1.0                  # Wheel and gesture multiplier, vertical (0.1-10.0)
+zoom = 0.75                       # Workspace scale while the overview is open (0.1-0.75)
+scroll_factor_horizontal = 1.0    # Wheel and gesture multiplier, horizontal (0.1-10.0)
+scroll_factor_vertical = 1.0      # Wheel and gesture multiplier, vertical (0.1-10.0)

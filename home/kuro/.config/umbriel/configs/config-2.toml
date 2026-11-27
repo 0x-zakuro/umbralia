@@ -11,7 +11,7 @@
 # Runs once at session start, in order: shell, then lock after 1s, then activate-linux
 autostart = [
     "noctalia",
-    "sh -c 'sleep 1 && noctalia msg session lock'",
+    "sh -c 'sleep 2 && noctalia msg session lock'",
     "activate-linux",
 ]
 xwayland = false                  # Xwayland support; needs xwayland-satellite. Restart to apply

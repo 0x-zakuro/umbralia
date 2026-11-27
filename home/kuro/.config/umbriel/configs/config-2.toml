@@ -239,11 +239,11 @@ default_pinned = true
 # Window opacity: 0.85 for both focused and unfocused windows (1 = opaque)
 [[window_rule]]
 match.is_focused = false
-opacity = 0.90
+opacity = 0.85
 
 [[window_rule]]
 match.is_focused = true
-opacity = 0.90
+opacity = 0.85
 
 
 # -----------------------------------------------------------------------------

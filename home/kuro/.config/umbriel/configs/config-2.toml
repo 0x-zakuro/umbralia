@@ -95,7 +95,7 @@ hide_when_typing = false          # Hide the cursor while typing
 hide_timeout_ms = 0               # Hide after this much idle time in ms (0 disables)
 
 [input.focus]
-follows_mouse = true              # Focus the window under the pointer
+follows_mouse = "always"          # Focus the window under the pointer
 
 
 # -----------------------------------------------------------------------------
@@ -105,7 +105,7 @@ follows_mouse = true              # Focus the window under the pointer
 [keybinds]
 
 # Mod alone opens the launcher
-"Mod" = "spawn:noctalia msg panel-toggle launcher"
+"Mod" = "spawn noctalia msg panel-toggle launcher"
 
 # Top row: window management
 "Mod+Q" = "window-close"
@@ -114,24 +114,24 @@ follows_mouse = true              # Focus the window under the pointer
 "Mod+R" = "window-cycle-primary-extent"          # Cycles layout.extent_presets
 
 # Home row: launchers
-"Mod+A" = "spawn:foot"
-"Mod+S" = "spawn:zeditor"
-"Mod+D" = "spawn:flow-browser"
-"Mod+F" = "spawn:luciole"
+"Mod+A" = "spawn foot"
+"Mod+S" = "spawn zeditor"
+"Mod+D" = "spawn flow-browser"
+"Mod+F" = "spawn luciole"
 
 # Bottom row: scripts and wallpaper
-"Mod+Z" = "spawn:foot -e /home/kuro/.config/scripts/noctalia-switcher.sh"
-"Mod+X" = "spawn:foot -e /home/kuro/.config/scripts/umbriel-switcher.sh"
-"Mod+C"       = { action = "spawn:noctalia msg wallpaper-random" }
-"Mod+Shift+C" = { action = "spawn:noctalia msg panel-toggle wallpaper" }
+"Mod+Z" = "spawn foot -e /home/kuro/.config/scripts/noctalia-switcher.sh"
+"Mod+X" = "spawn foot -e /home/kuro/.config/scripts/umbriel-switcher.sh"
+"Mod+C"       = { action = "spawn noctalia msg wallpaper-random" }
+"Mod+Shift+C" = { action = "spawn noctalia msg panel-toggle wallpaper" }
 
 # Special keys: cheatsheet, session, overview, screenshots, lock
 "Mod+Return"  = "cheatsheet-toggle"
 "Mod+Escape"  = "session-quit"
 "Mod+O"       = { action = "overview-toggle", repeat = false }
-"Mod+P"       = { action = "spawn:noctalia msg screenshot-fullscreen" }
-"Mod+Shift+P" = { action = "spawn:noctalia msg screenshot-region" }
-"Mod+Shift+L" = { action = "spawn:noctalia msg session lock" }
+"Mod+P"       = { action = "spawn noctalia msg screenshot-fullscreen" }
+"Mod+Shift+P" = { action = "spawn noctalia msg screenshot-region" }
+"Mod+Shift+L" = { action = "spawn noctalia msg session lock" }
 
 # Focus movement
 "Mod+Left"  = "window-focus-left"
@@ -144,30 +144,30 @@ follows_mouse = true              # Focus the window under the pointer
 "Mod+Shift+Down"  = "window-move-down"
 "Mod+Shift+Up"    = "window-move-up"
 "Mod+Shift+Right" = "column-move-right"
-"Mod+Ctrl+Left"   = "window-modify-width-left:0.05"
-"Mod+Ctrl+Right"  = "window-modify-width-right:0.05"
-"Mod+Ctrl+Up"     = "window-modify-height-up:0.05"
-"Mod+Ctrl+Down"   = "window-modify-height-down:0.05"
+"Mod+Ctrl+Left"   = "window-modify-primary-extent -0.05"
+"Mod+Ctrl+Right"  = "window-modify-primary-extent +0.05"
+"Mod+Ctrl+Up"     = "window-modify-secondary-extent +0.05"
+"Mod+Ctrl+Down"   = "window-modify-secondary-extent -0.05"
 
 # Workspaces: Mod+N switches, Mod+Shift+N moves the focused window
-"Mod+1" = "workspace-switch:1"
-"Mod+2" = "workspace-switch:2"
-"Mod+3" = "workspace-switch:3"
-"Mod+4" = "workspace-switch:4"
-"Mod+5" = "workspace-switch:5"
-"Mod+6" = "workspace-switch:6"
-"Mod+7" = "workspace-switch:7"
-"Mod+8" = "workspace-switch:8"
-"Mod+9" = "workspace-switch:9"
-"Mod+Shift+1" = "window-move-to-workspace:1"
-"Mod+Shift+2" = "window-move-to-workspace:2"
-"Mod+Shift+3" = "window-move-to-workspace:3"
-"Mod+Shift+4" = "window-move-to-workspace:4"
-"Mod+Shift+5" = "window-move-to-workspace:5"
-"Mod+Shift+6" = "window-move-to-workspace:6"
-"Mod+Shift+7" = "window-move-to-workspace:7"
-"Mod+Shift+8" = "window-move-to-workspace:8"
-"Mod+Shift+9" = "window-move-to-workspace:9"
+"Mod+1" = "workspace-switch 1"
+"Mod+2" = "workspace-switch 2"
+"Mod+3" = "workspace-switch 3"
+"Mod+4" = "workspace-switch 4"
+"Mod+5" = "workspace-switch 5"
+"Mod+6" = "workspace-switch 6"
+"Mod+7" = "workspace-switch 7"
+"Mod+8" = "workspace-switch 8"
+"Mod+9" = "workspace-switch 9"
+"Mod+Shift+1" = "window-move-to-workspace 1"
+"Mod+Shift+2" = "window-move-to-workspace 2"
+"Mod+Shift+3" = "window-move-to-workspace 3"
+"Mod+Shift+4" = "window-move-to-workspace 4"
+"Mod+Shift+5" = "window-move-to-workspace 5"
+"Mod+Shift+6" = "window-move-to-workspace 6"
+"Mod+Shift+7" = "window-move-to-workspace 7"
+"Mod+Shift+8" = "window-move-to-workspace 8"
+"Mod+Shift+9" = "window-move-to-workspace 9"
 
 # Scratchpad
 "Mod+Shift+Space" = "window-move-to-scratchpad"
@@ -176,11 +176,11 @@ follows_mouse = true              # Focus the window under the pointer
 "Mod+Tab"         = "scratchpad-focus-next"
 
 # Volume, brightness (work when locked), and wheel-based focus
-"XF86AudioRaiseVolume"  = "spawn:wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"
-"XF86AudioLowerVolume"  = "spawn:wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
-"XF86AudioMute"         = "spawn:wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
-"XF86MonBrightnessDown" = { action = "spawn:noctalia msg brightness-down 10", allow_when_locked = true }
-"XF86MonBrightnessUp"   = { action = "spawn:noctalia msg brightness-up 10", allow_when_locked = true }
+"XF86AudioRaiseVolume"  = "spawn wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"
+"XF86AudioLowerVolume"  = "spawn wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
+"XF86AudioMute"         = "spawn wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
+"XF86MonBrightnessDown" = { action = "spawn noctalia msg brightness-down 10", allow_when_locked = true }
+"XF86MonBrightnessUp"   = { action = "spawn noctalia msg brightness-up 10", allow_when_locked = true }
 "Mod+WheelDown" = "window-focus-left"
 "Mod+WheelUp"   = "window-focus-right"
 
@@ -239,11 +239,11 @@ default_pinned = true
 # Window opacity: 0.85 for both focused and unfocused windows (1 = opaque)
 [[window_rule]]
 match.is_focused = false
-opacity = 0.85
+opacity = 0.90
 
 [[window_rule]]
 match.is_focused = true
-opacity = 0.85
+opacity = 0.90
 
 
 # -----------------------------------------------------------------------------
@@ -285,7 +285,7 @@ enabled = true
 duration_ms = 360
 curve = "smooth"
 
-[animation.workspaces]            # Workspace switch: horizontal slide with edge rebound
+[animation.workspaces]            # Workspace switch  horizontal slide with edge rebound
 enabled = true
 duration_ms = 430
 curve = "smooth"

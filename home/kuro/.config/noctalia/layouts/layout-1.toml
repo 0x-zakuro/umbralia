@@ -1,18 +1,17 @@
-config_version = 14
-
 [bar]
 order = [ "default" ]
 
     [bar.default]
     background_opacity = 0
     capsule = true
+    capsule_group = []
     capsule_opacity = 0.75
     capsule_padding = 8.0
     capsule_radius = 5
-    capsule_thickness = 0.84999998472630978
+    capsule_thickness = 0.8499999847263098
     center = [ "active_window" ]
     concave_edge_corners = false
-    end = [ "media", "tray", "clipboard", "battery", "group:g1" ]
+    end = [ "media", "battery", "control-center" ]
     font_family = "Liberation Sans"
     font_weight = 700
     margin_ends = 0
@@ -29,17 +28,6 @@ order = [ "default" ]
         right = "theme-mode-toggle"
         scroll_down = "brightness-down"
         scroll_up = "brightness-up"
-
-        [[bar.default.capsule_group]]
-        accordion = false
-        accordion_direction = "end"
-        enabled = true
-        fill = "surface_container"
-        id = "g1"
-        members = [ "wallpaper", "control-center" ]
-        opacity = 1
-        padding = 8.0
-        radius = 5.0
 
 [control_center]
 show_shortcut_labels = false
@@ -79,7 +67,7 @@ widget_order = [ "desktop-widget-0000000000000002" ]
     box_height = 0.0
     box_width = 0.0
     cx = 692.5250244140625
-    cy = 348.48007202148438
+    cy = 348.4800720214844
     output = "eDP-1"
     placement_height = 1152.0
     placement_width = 2048.0
@@ -163,7 +151,7 @@ widget_order = [
         background_opacity = 0.0
         background_radius = 12.0
         center_password_text = true
-        input_opacity = 0.84999999999999998
+        input_opacity = 0.85
         input_radius = 20.0
         layout = "compact"
         show_caps_lock = true
@@ -178,7 +166,7 @@ widget_order = [
     box_height = 112.0
     box_width = 256.0
     cx = 1024.0
-    cy = 311.46670532226562
+    cy = 311.4667053222656
     output = "eDP-1"
     placement_height = 1152.0
     placement_width = 2048.0
@@ -233,7 +221,7 @@ history_retention_hours = 168
 max_visible = 3
 offset_x = 16
 offset_y = 6
-scale = 0.90000000596046448
+scale = 0.9000000059604645
 
 [osd]
 border = false
@@ -243,13 +231,14 @@ enabled = []
 
 [shell]
 avatar_path = "/home/kuro/.config/wallpaper/avatar.jpg"
-corner_radius_scale = 0.90000001341104507
+corner_radius_scale = 0.9000000134110451
 external_ip_enabled = true
 font_family = "Liberation Sans"
 password_style = "random"
 polkit_agent = true
-settings_window_translucent = false
 screen_time_enabled = true
+settings_window_translucent = false
+umbriel_overview_type_to_launch_enabled = true
 
     [shell.greeter_sync]
     auto_sync = true
@@ -318,7 +307,7 @@ screen_time_enabled = true
 
 [theme]
 community_palette = "Aura"
-custom_palette = "oxocarbon"
+custom_palette = "blue"
 mode = "dark"
 source = "custom"
 wallpaper_scheme = "dysfunctional"
@@ -338,6 +327,15 @@ transition_on_startup = true
     enabled = true
     interval_seconds = 3600
 
+    [wallpaper.default]
+    path = "/home/kuro/.config/wallpaper/hue-3_minimalist.png"
+
+    [wallpaper.last]
+    path = "/home/kuro/.config/wallpaper/hue-3_minimalist.png"
+
+    [wallpaper.monitors.eDP-1]
+    path = "/home/kuro/.config/wallpaper/hue-3_minimalist.png"
+
 [widget.bluetooth]
 enabled = false
 
@@ -345,7 +343,7 @@ enabled = false
 enabled = false
 
 [widget.clipboard]
-enabled = false
+enabled = true
 
 [widget.taskbar]
 scale = 2.5
@@ -356,6 +354,6 @@ enabled = false
 [widget.workspaces]
 active_pill_size = 1.3
 hide_when_empty = false
-inactive_pill_size = 0.65000000000000002
+inactive_pill_size = 0.65
 scale = 1.2
 style = "minimal"

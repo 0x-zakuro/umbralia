@@ -191,7 +191,7 @@ follows_mouse = "always"          # Focus the window under the pointer
 [layout]
 mode = "scrolling"                # scrolling | dwindle | master. Default, overridable per workspace
 gap = 20                          # Gap between tiles in logical px (0-500)
-extent_presets = [0.2, 0.4, 0.6, 0.8, 1.0]  # Width/height fractions of the screen, cycled by window-cycle-primary-extent
+extent_presets = [0.4, 0.6, 0.8, 1.0]  # Width/height fractions of the screen, cycled by window-cycle-primary-extent
 
 [layout.scrolling]                # Active while layout.mode = "scrolling"
 default_extent_fraction = 0.6     # Initial width of a new column, as a fraction of the screen (0.1-1.0)

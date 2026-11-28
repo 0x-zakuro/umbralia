@@ -126,6 +126,7 @@ follows_mouse = "always"          # Focus the window under the pointer
 "Mod+Escape"  = "session-quit"
 "Mod+O"       = { action = "overview-toggle", repeat = false }
 "Mod+P"       = { action = "spawn noctalia msg screenshot-fullscreen" }
+"Mod+L"       = "spawn noctalia msg panel-toggle session"
 "Mod+Shift+P" = { action = "spawn noctalia msg screenshot-region" }
 "Mod+Shift+L" = { action = "spawn noctalia msg session lock" }
 

@@ -6,7 +6,7 @@ STATE="$STATE_DIR/noctalia-state"
 
 mkdir -p "$STATE_DIR"
 
-LAYOUTS=("$DIR"/layouts/layout-*.toml)
+LAYOUTS=("$DIR"/layouts/*.toml)
 COUNT=${#LAYOUTS[@]}
 
 if [ "$COUNT" -eq 0 ]; then

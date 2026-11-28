@@ -6,7 +6,7 @@ STATE="$STATE_DIR/umbriel-state"
 
 mkdir -p "$STATE_DIR"
 
-CONFIGS=("$DIR"/configs/config-*.toml)
+CONFIGS=("$DIR"/configs/*.toml)
 COUNT=${#CONFIGS[@]}
 
 if [ "$COUNT" -eq 0 ]; then
